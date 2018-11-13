@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+        <color name="colorPrimary">@color/blue_color</color>
+        <color name="colorPrimaryDark">@color/radio_check</color>
+
+        <color name="colorAccent">#FF4081</color>
+        <color name="blue_color">#175aaa</color>
+        <color name="blueDark">#175aaa</color>
+        <color name="alarm_background">#99175aaa</color>
+        <color name="transparent">#00000000</color>
+        <color name="white">#ffffff</color>
+        <color name="red">#e22424</color>
+        <color name="gray">#bfbfbf</color>
+        <color name="gray_dark">#848484</color>
+        <color name="gray_light">#e0dede</color>
+        <color name="blue_light">#85bddf</color>
+        <color name="comment_selected">#907ac3ef</color>
+        <color name="search_box">#f5f5f5</color>
+        <color name="black">#000000</color>
+
+        <color name="black_80">#55000000</color>
+        <color name="progressbar_color">#ffDfE0E1</color>
+        <color name="ProgressBar_Background">#ffDfE0E1</color>
+
+        <color name="radio_check">#88b7e6</color>
+        <color name="radio_unCheck">#7a7c7e</color>
+        <color name="dialog_activity_background">#dde0e4</color>
+
+        <color name="radio_color">#72ea6e</color>
+
+        <color name="edittext_presed">#bbffffff</color>
+        <color name="edittext_focus">#70ffffff</color>
+
+
+        <color name="light_font">#FBFBFB</color>
+        <color name="text_shadow">#7F000000</color>
+
+        <color name="profile_toolbar">#e7e7e7</color>
+
+
+
+</resources>

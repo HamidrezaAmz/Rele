@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">recyclerLibrary</string>
+    <string name="empty_view">No item !</string>
+    <string name="error_msg">some thing bad happened! ;)</string>
+    <string name="retry">Retry</string>
+    <string name="loading">Loading ...</string>
+</resources>

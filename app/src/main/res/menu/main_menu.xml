@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:ignore="MissingDefaultResource">
+    <item
+        android:id="@+id/action_load"
+        app:showAsAction="never"
+        android:title="loading">
+    </item>
+    <item
+        android:id="@+id/action_success"
+        app:showAsAction="never"
+        android:title="success">
+    </item>
+
+    <item
+        android:id="@+id/action_failure"
+        app:showAsAction="never"
+        android:title="failure">
+    </item>
+
+    <item
+        android:id="@+id/action_empty"
+        app:showAsAction="never"
+        android:title="empty">
+    </item>
+</menu>
