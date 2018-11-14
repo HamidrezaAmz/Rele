@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
         });
         recyclerView.setAdapter(adapter);
 
-        myCustomView.setStatus(ListStatuse.FAILURE, null);
+        myCustomView.setStatus(ListStatuse.SUCCESS, null);
     }
 
     @Override
