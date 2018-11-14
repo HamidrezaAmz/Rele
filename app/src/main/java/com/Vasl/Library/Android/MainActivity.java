@@ -1,5 +1,6 @@
 package com.Vasl.Library.Android;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -43,6 +44,12 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
             }
         }, 2000);
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(newBase);
+        LocaleHelper.onAttach(newBase);
     }
 
     private void myList() {
@@ -106,16 +113,16 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_load:
-                myCustomView.setStatus(ListStatuse.LOADING, null);
+                myCustomView.setStatus(ListStatuse.LOADING);
                 return true;
             case R.id.action_success:
-                myCustomView.setStatus(ListStatuse.SUCCESS, null);
+                myCustomView.setStatus(ListStatuse.SUCCESS);
                 return true;
             case R.id.action_failure:
-                myCustomView.setStatus(ListStatuse.FAILURE, "hellooo");
+                myCustomView.setStatus(ListStatuse.FAILURE);
                 return true;
             case R.id.action_empty:
-                myCustomView.setStatus(ListStatuse.EMPTY, "no item");
+                myCustomView.setStatus(ListStatuse.EMPTY);
                 return true;
         }
         return false;

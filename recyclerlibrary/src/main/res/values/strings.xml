@@ -4,4 +4,10 @@
     <string name="error_msg">some thing bad happened! ;)</string>
     <string name="retry">Retry</string>
     <string name="loading">Loading ...</string>
+    <string name="Oops">Oops!</string>
+    <string name="no_item_to_show">Your list is empty, \n so there is nothing to show here.</string>
+    <string name="error_title">UH OH!</string>
+    <string name="error_sub_title">Something went wrong, \n please try again</string>
+    <string name="loading_title">Loading</string>
+    <string name="loading_sub_title">Please wait until request complete</string>
 </resources>

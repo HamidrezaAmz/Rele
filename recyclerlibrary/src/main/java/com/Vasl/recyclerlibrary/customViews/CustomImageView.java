@@ -2,20 +2,30 @@ package com.Vasl.recyclerlibrary.customViews;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import androidx.appcompat.widget.AppCompatImageView;
 import android.util.AttributeSet;
 
 import com.Vasl.recyclerlibrary.R;
 
+import androidx.appcompat.widget.AppCompatImageView;
+
 public class CustomImageView extends AppCompatImageView {
 
-    boolean isCircle;
-    String gravity;
+    private boolean isCircle;
+
+    private String gravity;
+
     private Context context;
 
     public CustomImageView(Context context) {
         super(context);
         this.context = context;
+        init();
+    }
+
+    public CustomImageView(Context context, boolean isCircle) {
+        super(context);
+        this.context = context;
+        this.isCircle = isCircle;
         init();
     }
 

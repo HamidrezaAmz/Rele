@@ -1,7 +1,15 @@
 <resources>
+
     <string name="app_name">recyclerLibrary</string>
     <string name="empty_view">فیلدی برای نمایش وجود ندارد</string>
     <string name="error_msg">اتفاق بدی افتاده</string>
     <string name="retry">تلاش مجدد</string>
-    <string name="loading">Loading ...</string>
+    <string name="loading">بارگذاری</string>
+    <string name="Oops">عجب!</string>
+    <string name="no_item_to_show">لیست مورد نظر شما خالی است</string>
+    <string name="error_title">خطا!</string>
+    <string name="error_sub_title">اشکالی پیش آمده، لطفا مجدد تلاش کنید</string>
+    <string name="loading_title">بارگذاری</string>
+    <string name="loading_sub_title">لطفا چند لحظه صبر کنید</string>
+
 </resources>

@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.Vasl.recyclerlibrary.globalEnums.ListStatuse;
@@ -16,24 +17,24 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-public class MyCustomView extends RelativeLayout implements View.OnClickListener
-        , SwipeRefreshLayout.OnRefreshListener {
+public class MyCustomView extends RelativeLayout
+        implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     Context context;
 
     // layout_loading
-    RelativeLayout loading;
+    LinearLayout loading;
 
     // recycler view
     RecyclerView recyclerView;
 
     // empty view
-    RelativeLayout emptyHolder;
-    AppCompatTextView emptyTextView;
+    LinearLayout emptyHolder;
+    AppCompatTextView emptyTextViewTitle, emptyTextViewSubTitle;
 
     // error view
-    RelativeLayout errorHolder;
-    AppCompatTextView errorTextView;
+    LinearLayout errorHolder;
+    AppCompatTextView errorTextViewTitle, errorTextViewSubTitle;
     Button buttonRetry;
 
     // swipe
@@ -73,18 +74,25 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
         buttonRetry = view.findViewById(R.id.button_retry);
         buttonRetry.setOnClickListener(this);
 
+        // loading-view
         loading = view.findViewById(R.id.loadingHolder);
 
+        // recycler-view
         recyclerView = view.findViewById(R.id.recyclerView);
 
+        //  swipe-view
         swipeRefreshLayout = view.findViewById(R.id.swipeHolder);
         swipeRefreshLayout.setOnRefreshListener(this);
 
+        // empty-view
         emptyHolder = view.findViewById(R.id.emptyHolder);
-        emptyTextView = view.findViewById(R.id.emptyTextView);
+        emptyTextViewTitle = view.findViewById(R.id.emptyTextViewTitle);
+        emptyTextViewSubTitle = view.findViewById(R.id.emptyTextViewSubTitle);
 
+        //error-view
         errorHolder = view.findViewById(R.id.errorHolder);
-        errorTextView = view.findViewById(R.id.errorTextView);
+        errorTextViewTitle = view.findViewById(R.id.errorTextViewTitle);
+        errorTextViewSubTitle = view.findViewById(R.id.errorTextViewSubTitle);
 
     }
 
@@ -96,15 +104,27 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
         loading.setVisibility(VISIBLE);
     }
 
-    private void setErrorMsg(String msg){
-        if (!PublicFunction.StringIsEmptyOrNull(msg)) {
-            errorTextView.setText(msg);
+    private void setErrorTitle(@Nullable String title) {
+        if (!PublicFunction.StringIsEmptyOrNull(title)) {
+            errorTextViewTitle.setText(title);
         }
     }
 
-    private void setEmtpyMsg(String msg){
-        if (!PublicFunction.StringIsEmptyOrNull(msg)) {
-            emptyTextView.setText(msg);
+    private void setErrorSubTitle(@Nullable String subTitle) {
+        if (!PublicFunction.StringIsEmptyOrNull(subTitle)) {
+            errorTextViewSubTitle.setText(subTitle);
+        }
+    }
+
+    private void setEmptyTitle(@Nullable String title) {
+        if (!PublicFunction.StringIsEmptyOrNull(title)) {
+            emptyTextViewTitle.setText(title);
+        }
+    }
+
+    private void setEmptySubTitle(@Nullable String subtitle) {
+        if (!PublicFunction.StringIsEmptyOrNull(subtitle)) {
+            emptyTextViewSubTitle.setText(subtitle);
         }
     }
 
@@ -144,7 +164,7 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
         errorHolder.setVisibility(GONE);
     }
 
-    public void setStatus(ListStatuse status,@Nullable String error) {
+    public void setStatus(ListStatuse status) {
         switch (status) {
             case LOADING:
                 showLoading();
@@ -165,7 +185,7 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
                 hideEmptyView();
                 hideRecyclerView();
                 hideSwipe();
-                setErrorMsg(error);
+                setErrorTitle(null);
                 showError();
                 break;
             case EMPTY:
@@ -173,7 +193,7 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
                 hideRecyclerView();
                 hideSwipe();
                 hideError();
-                setEmtpyMsg(error);
+                setEmptyTitle(null);
                 showEmptyView();
                 break;
             case UNDEFINE:
@@ -193,6 +213,54 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
         }
     }
 
+    public void setStatus(ListStatuse status, @Nullable String title) {
+        switch (status) {
+            case LOADING:
+                showLoading();
+                hideEmptyView();
+                hideRecyclerView();
+                hideSwipe();
+                hideError();
+                break;
+            case SUCCESS:
+                hideLoading();
+                hideEmptyView();
+                showRecyclerView();
+                hideSwipe();
+                hideError();
+                break;
+            case FAILURE:
+                hideLoading();
+                hideEmptyView();
+                hideRecyclerView();
+                hideSwipe();
+                setErrorTitle(title);
+                showError();
+                break;
+            case EMPTY:
+                hideLoading();
+                hideRecyclerView();
+                hideSwipe();
+                hideError();
+                setEmptyTitle(title);
+                showEmptyView();
+                break;
+            case UNDEFINE:
+                hideLoading();
+                hideEmptyView();
+                hideRecyclerView();
+                hideSwipe();
+                showError();
+                break;
+            default:
+                hideLoading();
+                hideEmptyView();
+                hideRecyclerView();
+                hideSwipe();
+                showError();
+                break;
+        }
+    }
 
     @Override
     public void onRefresh() {

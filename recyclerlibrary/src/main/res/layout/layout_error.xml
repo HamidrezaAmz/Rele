@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/errorHolder"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:visibility="visible">
+    android:visibility="gone">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,36 +13,32 @@
         android:gravity="center"
         android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/error_icon" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/no_wifi_256" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/errorTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="6dp"
-        android:text="@string/error_msg"
-        android:layout_marginTop="@dimen/card_margin"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/errorTextViewTitle"
+            style="@style/TextViewTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/error_title" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_retry"
-        android:layout_width="140dp"
-        android:layout_height="42dp"
-        android:text="@string/retry"
-        android:background="@drawable/retry_button_background"
-        android:clickable="true"
-        android:textColor="@color/white"
-        android:gravity="center"
-        android:textSize="12sp"
-        android:layout_margin="@dimen/header_margin"
-        android:padding="@dimen/header_margin"
-        android:focusable="true" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/errorTextViewSubTitle"
+            style="@style/TextViewSubTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/error_sub_title" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_retry"
+            style="@style/GlobalButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/retry" />
 
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>
