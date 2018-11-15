@@ -40,26 +40,30 @@ dependencies {
 }
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+### Here we go for implementation
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
+Add xml of custom view into your parent view
 ```
-Give an example
+<com.vasl.recyclerlibrary.MyCustomView
+        android:id="@+id/myCustomView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
-
+Refrence to custom-view inside your activity or fragment (I use [butterknife](https://github.com/JakeWharton/butterknife/))
 ```
-Give an example
+ @BindView(R.id.myCustomView)
+ MyCustomView myCustomView;
+```
+
+For getting recycler-view
+```
+RecyclerView recyclerView = myCustomView.getRecyclerView();
+```
+
+For setting status
+```
+myCustomView.setStatus(ListStatuse.LOADING);
 ```
 
 ## Deployment
