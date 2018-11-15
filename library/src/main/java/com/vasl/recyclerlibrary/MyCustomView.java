@@ -209,6 +209,8 @@ public class MyCustomView extends RelativeLayout
                 showError();
                 break;
         }
+
+        invalidate();
     }
 
     public void setStatus(ListStatuse status, @Nullable String title) {
