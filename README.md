@@ -83,3 +83,5 @@ List of statuses
 * **Hamidreza amoozadeh** - *Android DEV* - [github](https://github.com/HamidrezaAmz)
 
 
+## Supported Languages
+* English, Persian
