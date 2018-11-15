@@ -129,7 +129,7 @@ public class MyCustomView extends RelativeLayout
     }
 
     private void hideLoading() {
-        loadingHolder.setVisibility(GONE);
+        loadingHolder.setVisibility(INVISIBLE);
     }
 
     private void showEmptyView() {
@@ -137,7 +137,7 @@ public class MyCustomView extends RelativeLayout
     }
 
     private void hideEmptyView() {
-        emptyHolder.setVisibility(GONE);
+        emptyHolder.setVisibility(INVISIBLE);
     }
 
     private void showRecyclerView() {
@@ -145,7 +145,7 @@ public class MyCustomView extends RelativeLayout
     }
 
     private void hideRecyclerView() {
-        recyclerView.setVisibility(GONE);
+        recyclerView.setVisibility(INVISIBLE);
     }
 
     private void showSwipe() {
@@ -161,7 +161,7 @@ public class MyCustomView extends RelativeLayout
     }
 
     private void hideError() {
-        errorHolder.setVisibility(GONE);
+        errorHolder.setVisibility(INVISIBLE);
     }
 
     public void setStatus(ListStatuse status) {
@@ -173,6 +173,8 @@ public class MyCustomView extends RelativeLayout
                 hideSwipe();
                 hideError();
 
+                invalidate(); // for redraw
+
                 showLoading();
                 break;
             case SUCCESS:
@@ -181,6 +183,8 @@ public class MyCustomView extends RelativeLayout
                 hideRecyclerView();
                 hideSwipe();
                 hideError();
+
+                invalidate(); // for redraw
 
                 showRecyclerView();
                 break;
@@ -191,6 +195,8 @@ public class MyCustomView extends RelativeLayout
                 hideSwipe();
                 hideError();
 
+                invalidate(); // for redraw
+
                 showError();
                 break;
             case EMPTY:
@@ -199,6 +205,8 @@ public class MyCustomView extends RelativeLayout
                 hideRecyclerView();
                 hideSwipe();
                 hideError();
+
+                invalidate(); // for redraw
 
                 showEmptyView();
                 break;
@@ -209,6 +217,8 @@ public class MyCustomView extends RelativeLayout
                 hideSwipe();
                 hideError();
 
+                invalidate(); // for redraw
+
                 showError();
                 break;
             default:
@@ -218,11 +228,12 @@ public class MyCustomView extends RelativeLayout
                 hideSwipe();
                 hideError();
 
+                invalidate(); // for redraw
+
                 showError();
                 break;
         }
 
-        invalidate();
     }
 
     public void setStatus(ListStatuse status, @Nullable String title) {
