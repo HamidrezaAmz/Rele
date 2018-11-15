@@ -26,7 +26,7 @@ This library was built with **androidX**, so you should migrate into androidX to
 Step 1. Add the JitPack repository to your build file,
 Add it in your root build.gradle at the end of repositories:
 
-```
+```gradle
 allprojects {
         repositories {
             ...
@@ -37,7 +37,7 @@ allprojects {
 
 Step 2. Add the dependency
 
-```
+```gradle
 dependencies {
     implementation 'com.github.HamidrezaAmz:Rele:v1.0.6'
 }
@@ -46,7 +46,7 @@ dependencies {
 ### Here we go for implementation
 
 Add xml of custom view into your parent view
-```
+```xml
 <com.vasl.recyclerlibrary.MyCustomView
         android:id="@+id/myCustomView"
         android:layout_width="match_parent"
@@ -60,12 +60,12 @@ Refrence to custom-view inside your activity or fragment (I use [butterknife](ht
 ```
 
 For getting recycler-view
-```
+```java
 RecyclerView recyclerView = myCustomView.getRecyclerView();
 ```
 
 For setting status
-```
+```java
 myCustomView.setStatus(ListStatuse.LOADING);
 ```
 
