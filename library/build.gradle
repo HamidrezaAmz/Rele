@@ -33,11 +33,7 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
 
     // OTHERS
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
     implementation 'com.tuyenmonkey:mkloader:1.4.0'
-
-    // ANNOTATIONS
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 
     // TESTS
     testImplementation 'junit:junit:4.12'

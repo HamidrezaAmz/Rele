@@ -40,7 +40,7 @@ public class LocaleHelper {
     }
 
     private static String getLanguageSetting(Context context) {
-        return LocalizationFA;
+        return LocalizationEN;
     }
 
     public static void setLocal(Context context, String language) {
