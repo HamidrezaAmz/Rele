@@ -18,18 +18,18 @@ These instructions will help you to use this library inside your projects
 
 This library was built with **androidX**, so you should migrate into androidX to use this library with out any problem. For migration you can use [Migrating to AndroidX](https://developer.android.com/jetpack/androidx/migrate)
 
-```
-Give examples
-```
-
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+Step 1. Add the JitPack repository to your build file,
+Add it in your root build.gradle at the end of repositories:
 
 ```
-Give the example
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
 ```
 
 And repeat
