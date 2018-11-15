@@ -167,31 +167,39 @@ public class MyCustomView extends RelativeLayout
     public void setStatus(ListStatuse status) {
         switch (status) {
             case LOADING:
-                showLoading();
+                hideLoading();
                 hideEmptyView();
                 hideRecyclerView();
                 hideSwipe();
                 hideError();
+
+                showLoading();
                 break;
             case SUCCESS:
                 hideLoading();
                 hideEmptyView();
-                showRecyclerView();
+                hideRecyclerView();
                 hideSwipe();
                 hideError();
+
+                showRecyclerView();
                 break;
             case FAILURE:
                 hideLoading();
                 hideEmptyView();
                 hideRecyclerView();
                 hideSwipe();
+                hideError();
+
                 showError();
                 break;
             case EMPTY:
                 hideLoading();
+                hideEmptyView();
                 hideRecyclerView();
                 hideSwipe();
                 hideError();
+
                 showEmptyView();
                 break;
             case UNDEFINE:
@@ -199,6 +207,8 @@ public class MyCustomView extends RelativeLayout
                 hideEmptyView();
                 hideRecyclerView();
                 hideSwipe();
+                hideError();
+
                 showError();
                 break;
             default:
@@ -206,6 +216,8 @@ public class MyCustomView extends RelativeLayout
                 hideEmptyView();
                 hideRecyclerView();
                 hideSwipe();
+                hideError();
+
                 showError();
                 break;
         }
