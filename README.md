@@ -54,7 +54,7 @@ Add xml of custom view into your parent view
 ```
 
 Refrence to custom-view inside your activity or fragment (I use [butterknife](https://github.com/JakeWharton/butterknife/))
-```
+```java
  @BindView(R.id.myCustomView)
  MyCustomView myCustomView;
 ```
