@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
 
         myCustomView.setMyCustomViewCallBack(this);
 
-        myCustomView.setStatus(ListStatuse.LOADING, null);
+        myCustomView.setStatus(ListStatuse.LOADING);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
 
     private void myList() {
 
-        myCustomView.setStatus(ListStatuse.LOADING, null);
+        myCustomView.setStatus(ListStatuse.LOADING);
 
         RecyclerView recyclerView = myCustomView.getRecyclerView();
 
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
         });
         recyclerView.setAdapter(adapter);
 
-        myCustomView.setStatus(ListStatuse.SUCCESS, null);
+        myCustomView.setStatus(ListStatuse.SUCCESS);
     }
 
     @Override

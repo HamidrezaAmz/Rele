@@ -12,14 +12,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <!--layout_loading-->
+            <include layout="@layout/layout_loading" />
+
             <!--empty view-->
             <include layout="@layout/layout_empty" />
 
             <!--error view-->
             <include layout="@layout/layout_error" />
-
-            <!--layout_loading-->
-            <include layout="@layout/layout_loading" />
 
             <!--recycler-view-->
             <include layout="@layout/layout_recycler_view" />

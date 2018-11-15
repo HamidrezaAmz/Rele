@@ -23,7 +23,7 @@ public class MyCustomView extends RelativeLayout
     private Context context;
 
     // layout_loading
-    private LinearLayout loading;
+    private LinearLayout loadingHolder;
 
     // recycler view
     private RecyclerView recyclerView;
@@ -74,8 +74,8 @@ public class MyCustomView extends RelativeLayout
         buttonRetry = view.findViewById(R.id.button_retry);
         buttonRetry.setOnClickListener(this);
 
-        // loading-view
-        loading = view.findViewById(R.id.loadingHolder);
+        // loadingHolder-view
+        loadingHolder = view.findViewById(R.id.loadingHolder);
 
         // recycler-view
         recyclerView = view.findViewById(R.id.recyclerView);
@@ -98,10 +98,6 @@ public class MyCustomView extends RelativeLayout
 
     public RecyclerView getRecyclerView() {
         return recyclerView;
-    }
-
-    private void showLoading() {
-        loading.setVisibility(VISIBLE);
     }
 
     private void setErrorTitle(@Nullable String title) {
@@ -128,8 +124,12 @@ public class MyCustomView extends RelativeLayout
         }
     }
 
+    private void showLoading() {
+        loadingHolder.setVisibility(VISIBLE);
+    }
+
     private void hideLoading() {
-        loading.setVisibility(GONE);
+        loadingHolder.setVisibility(GONE);
     }
 
     private void showEmptyView() {
@@ -148,12 +148,12 @@ public class MyCustomView extends RelativeLayout
         recyclerView.setVisibility(GONE);
     }
 
-    private void hideSwipe() {
-        swipeRefreshLayout.setRefreshing(false);
-    }
-
     private void showSwipe() {
         swipeRefreshLayout.setRefreshing(true);
+    }
+
+    private void hideSwipe() {
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     private void showError() {
@@ -185,7 +185,6 @@ public class MyCustomView extends RelativeLayout
                 hideEmptyView();
                 hideRecyclerView();
                 hideSwipe();
-                setErrorTitle(null);
                 showError();
                 break;
             case EMPTY:
@@ -193,7 +192,6 @@ public class MyCustomView extends RelativeLayout
                 hideRecyclerView();
                 hideSwipe();
                 hideError();
-                setEmptyTitle(null);
                 showEmptyView();
                 break;
             case UNDEFINE:
