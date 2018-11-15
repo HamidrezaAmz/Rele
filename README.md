@@ -90,6 +90,3 @@ List of statuses
 * English, Persian
 
 
-
-* HAPPY CODING :kissing_heart::kissing_heart::kissing_heart:
-
