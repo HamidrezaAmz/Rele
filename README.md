@@ -32,10 +32,12 @@ allprojects {
     }
 ```
 
-And repeat
+Step 2. Add the dependency
 
 ```
-until finished
+dependencies {
+    implementation 'com.github.HamidrezaAmz:Rele:v1.0.6'
+}
 ```
 
 End with an example of getting some data out of the system or using it for a little demo
