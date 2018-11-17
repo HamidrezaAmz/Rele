@@ -6,12 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.vasl.recyclerlibrary.baseClasses.BaseRecyclerAdapter;
-import com.vasl.recyclerlibrary.customViews.CustomImageView;
-import com.vasl.recyclerlibrary.globalObjects.RowModel;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.vasl.recyclerlibrary.baseClasses.BaseRecyclerAdapter;
+import com.vasl.recyclerlibrary.customViews.CustomImageView;
+import com.vasl.recyclerlibrary.globalObjects.RowModel;
 
 import java.util.ArrayList;
 
@@ -39,7 +39,9 @@ public class RecyclerVerticalAdapter extends BaseRecyclerAdapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         ViewHolder holder = (ViewHolder) viewHolder;
+
         RowModel rowModel = item.get(position);
+
         holder.textView.setText(rowModel.getTitle());
 
         GlideApp

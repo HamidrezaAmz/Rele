@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
 
         RecyclerView recyclerView = myCustomView.getRecyclerView();
 
-
         ArrayList<RowModel> rowModels = new ArrayList<>();
         rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-adservice-banners/2880.jpg", "1"));
         rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-adservice-banners/2880.jpg", "2"));
@@ -67,18 +66,16 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
         rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-adservice-banners/2880.jpg", "5"));
         rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-adservice-banners/2880.jpg", "6"));
         rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-adservice-banners/2880.jpg", "7"));
+        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-adservice-banners/2880.jpg", "8"));
+        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-adservice-banners/2880.jpg", "9"));
+        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-adservice-banners/2880.jpg", "10"));
 
         RecyclerVerticalAdapter adapter = new RecyclerVerticalAdapter(MainActivity.this, rowModels);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         adapter.setMyCustomAdapterCallBack(new MyCustomAdapterCallBack() {
             @Override
-            public void verticalScrollRichToEnd() {
-                Toast.makeText(MainActivity.this, "verticalScrollRichToEnd", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void horizontalScrollRichToEnd() {
-                Toast.makeText(MainActivity.this, "horizontalScrollRichToEnd", Toast.LENGTH_SHORT).show();
+            public void richToEnd() {
+                Toast.makeText(MainActivity.this, "richToEnd", Toast.LENGTH_SHORT).show();
             }
         });
         recyclerView.setAdapter(adapter);

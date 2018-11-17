@@ -1,13 +1,13 @@
 package com.vasl.recyclerlibrary.baseClasses;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomAdapterCallBack;
 import com.vasl.recyclerlibrary.utils.LogHelper;
 import com.vasl.recyclerlibrary.utils.PublicValue;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -36,10 +36,8 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
             float percentage = ((position + 1) * 100 / adapterSize);
             if (percentage > PublicValue.percentVerticalNotify) {
                 if (myCustomAdapterCallBack != null)
-                    myCustomAdapterCallBack.verticalScrollRichToEnd();
+                    myCustomAdapterCallBack.richToEnd();
             }
-            if (myCustomAdapterCallBack != null)
-                myCustomAdapterCallBack.horizontalScrollRichToEnd();
             return lastPosition;
         } catch (Exception ex) {
             logHelper.e("checkScrollChanged() called with: Exception = " + ex.getMessage() + " - Position = [" + position + "]");
