@@ -9,6 +9,7 @@
     android:visibility="gone">
 
     <com.tuyenmonkey.mkloader.MKLoader
+        android:id="@+id/mkLoader"
         android:layout_width="120dp"
         android:layout_height="120dp"
         app:mk_color="@color/gray"
