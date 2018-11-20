@@ -19,6 +19,13 @@
         <color name="search_box">#f5f5f5</color>
         <color name="black">#000000</color>
 
+        <color name="button_start">#3e96f2</color>
+        <color name="button_center">#2faff2</color>
+        <color name="button_end">#1fe2f2</color>
+
+
+
+
         <color name="black_80">#55000000</color>
         <color name="progressbar_color">#ffDfE0E1</color>
         <color name="ProgressBar_Background">#ffDfE0E1</color>

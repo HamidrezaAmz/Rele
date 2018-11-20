@@ -1,6 +1,8 @@
 package com.vasl.recyclerlibrary;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.tuyenmonkey.mkloader.MKLoader;
 import com.vasl.recyclerlibrary.globalEnums.ListStatuse;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewCallBack;
 import com.vasl.recyclerlibrary.utils.PublicFunction;
@@ -22,8 +25,14 @@ public class MyCustomView extends RelativeLayout
 
     private Context context;
 
+    int titleColor;
+    int subtitleColor;
+
     // layout_loading
     private LinearLayout loadingHolder;
+    private AppCompatTextView loadingTextViewTitle;
+    private AppCompatTextView loadingTextViewSubTitle;
+    private MKLoader mkLoader;
 
     // recycler view
     private RecyclerView recyclerView;
@@ -50,22 +59,22 @@ public class MyCustomView extends RelativeLayout
     public MyCustomView(Context context) {
         super(context);
         this.context = context;
-        init();
+        init(null);
     }
 
     public MyCustomView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
-        init();
+        init(attrs);
     }
 
     public MyCustomView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.context = context;
-        init();
+        init(attrs);
     }
 
-    private void init() {
+    private void init(AttributeSet attrs) {
 
         LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -76,6 +85,9 @@ public class MyCustomView extends RelativeLayout
 
         // loadingHolder-view
         loadingHolder = view.findViewById(R.id.loadingHolder);
+        loadingTextViewTitle = view.findViewById(R.id.loadingTextViewTitle);
+        loadingTextViewSubTitle = view.findViewById(R.id.loadingTextViewSubTitle);
+        mkLoader = view.findViewById(R.id.mkLoader);
 
         // recycler-view
         recyclerView = view.findViewById(R.id.recyclerView);
@@ -94,6 +106,24 @@ public class MyCustomView extends RelativeLayout
         errorTextViewTitle = view.findViewById(R.id.errorTextViewTitle);
         errorTextViewSubTitle = view.findViewById(R.id.errorTextViewSubTitle);
 
+        //color attr set
+        setColor(attrs);
+
+    }
+
+    private void setColor(AttributeSet attrs) {
+        if (attrs == null) {
+            return;
+        }
+        TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.MyCustomView);
+        titleColor = ta.getColor(R.styleable.MyCustomView_titleColor, Color.WHITE);
+        subtitleColor = ta.getColor(R.styleable.MyCustomView_subtitleColor, Color.GRAY);
+        emptyTextViewTitle.setTextColor(titleColor);
+        errorTextViewTitle.setTextColor(titleColor);
+        loadingTextViewTitle.setTextColor(titleColor);
+        emptyTextViewSubTitle.setTextColor(subtitleColor);
+        errorTextViewSubTitle.setTextColor(subtitleColor);
+        loadingTextViewSubTitle.setTextColor(subtitleColor);
     }
 
     public RecyclerView getRecyclerView() {
