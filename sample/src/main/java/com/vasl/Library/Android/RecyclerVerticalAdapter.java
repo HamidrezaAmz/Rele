@@ -10,7 +10,6 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.vasl.recyclerlibrary.baseClasses.BaseRecyclerAdapter;
-import com.vasl.recyclerlibrary.customViews.CustomImageView;
 import com.vasl.recyclerlibrary.globalObjects.RowModel;
 
 import java.util.ArrayList;
@@ -58,13 +57,13 @@ public class RecyclerVerticalAdapter extends BaseRecyclerAdapter {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        CustomImageView imageView;
+        SquareImageView imageView;
         TextView textView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.ImageCustom);
-            textView = itemView.findViewById(R.id.nameTextView);
+            imageView = itemView.findViewById(R.id.categoryIconImageView);
+            textView = itemView.findViewById(R.id.titleTextView);
         }
     }
 }
