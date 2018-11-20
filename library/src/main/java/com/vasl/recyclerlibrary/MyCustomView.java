@@ -36,6 +36,7 @@ public class MyCustomView extends RelativeLayout
 
     // recycler view
     private RecyclerView recyclerView;
+    private MKLoader mkLoaderList;
 
     // empty view
     private LinearLayout emptyHolder;
@@ -91,6 +92,7 @@ public class MyCustomView extends RelativeLayout
 
         // recycler-view
         recyclerView = view.findViewById(R.id.recyclerView);
+        mkLoaderList = view.findViewById(R.id.mkLoaderList);
 
         //  swipe-view
         swipeRefreshLayout = view.findViewById(R.id.swipeHolder);
@@ -179,6 +181,14 @@ public class MyCustomView extends RelativeLayout
         recyclerView.setVisibility(INVISIBLE);
     }
 
+    private void hideLoadingRecyclerView() {
+        mkLoaderList.setVisibility(INVISIBLE);
+    }
+
+    private void showLoadingRecyclerView() {
+        mkLoaderList.setVisibility(VISIBLE);
+    }
+
     private void showSwipe() {
         swipeRefreshLayout.setRefreshing(true);
     }
@@ -251,6 +261,12 @@ public class MyCustomView extends RelativeLayout
                 invalidate(); // for redraw
 
                 showError();
+                break;
+            case ENABLELISTLOADING:
+                showLoadingRecyclerView();
+                break;
+            case DISABLELISTLOADING:
+                hideLoadingRecyclerView();
                 break;
             default:
                 hideLoading();

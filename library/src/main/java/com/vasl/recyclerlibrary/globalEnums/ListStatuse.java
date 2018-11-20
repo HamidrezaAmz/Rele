@@ -5,6 +5,8 @@ public enum ListStatuse {
     FAILURE("failure"),
     LOADING("layout_loading"),
     SUCCESS("success"),
+    ENABLELISTLOADING("enable_list_loading"),
+    DISABLELISTLOADING("disable_list_loading"),
     EMPTY("empty");
 
     private String value;

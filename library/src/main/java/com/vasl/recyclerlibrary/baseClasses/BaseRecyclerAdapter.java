@@ -35,8 +35,9 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
             lastPosition = position;
             float percentage = ((position + 1) * 100 / adapterSize);
             if (percentage > PublicValue.percentVerticalNotify) {
-                if (myCustomAdapterCallBack != null)
+                if (myCustomAdapterCallBack != null) {
                     myCustomAdapterCallBack.richToEnd();
+                }
             }
             return lastPosition;
         } catch (Exception ex) {
@@ -44,4 +45,5 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
             return lastPosition;
         }
     }
+
 }
