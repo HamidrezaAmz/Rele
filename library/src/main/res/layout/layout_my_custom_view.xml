@@ -8,24 +8,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <!--layout_loading-->
-            <include layout="@layout/layout_loading" />
-
-            <!--empty view-->
-            <include layout="@layout/layout_empty" />
-
-            <!--error view-->
-            <include layout="@layout/layout_error" />
-
-            <!--recycler-view-->
-            <include layout="@layout/layout_recycler_view" />
-
-        </RelativeLayout>
+        <!--recycler-view-->
+        <include layout="@layout/layout_recycler_view" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--layout_loading-->
+        <include layout="@layout/layout_loading" />
+
+        <!--empty view-->
+        <include layout="@layout/layout_empty" />
+
+        <!--error view-->
+        <include layout="@layout/layout_error" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
