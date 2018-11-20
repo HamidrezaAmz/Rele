@@ -251,6 +251,10 @@ public class MyCustomView extends RelativeLayout
 
                 showError();
                 break;
+            case ENABLELISTLOADING:
+                break;
+            case DISABLELISTLOADING:
+                break;
             default:
                 hideLoading();
                 hideEmptyView();

@@ -75,7 +75,15 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
         adapter.setMyCustomAdapterCallBack(new MyCustomAdapterCallBack() {
             @Override
             public void richToEnd() {
-                Toast.makeText(MainActivity.this, "richToEnd", Toast.LENGTH_SHORT).show();
+                myCustomView.setStatus(ListStatuse.ENABLELISTLOADING);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        myCustomView.setStatus(ListStatuse.DISABLELISTLOADING);
+                        myList();
+                    }
+                },2000);
             }
         });
         recyclerView.setAdapter(adapter);
