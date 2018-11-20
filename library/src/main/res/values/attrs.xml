@@ -2,8 +2,8 @@
 <resources>
 
     <declare-styleable name="CustomImageView">
-        <attr name="isCircle" format="boolean"/>
-        <attr name="gravity" format="dimension"/>
+        <attr name="isCircle" format="boolean" />
+        <attr name="gravity" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="MyCustomView">

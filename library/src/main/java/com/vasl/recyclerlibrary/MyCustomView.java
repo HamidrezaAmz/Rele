@@ -116,8 +116,8 @@ public class MyCustomView extends RelativeLayout
             return;
         }
         TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.MyCustomView);
-        titleColor = ta.getColor(R.styleable.MyCustomView_titleColor, Color.BLACK);
-        subtitleColor = ta.getColor(R.styleable.MyCustomView_subtitleColor, Color.BLACK);
+        titleColor = ta.getColor(R.styleable.MyCustomView_titleColor, Color.WHITE);
+        subtitleColor = ta.getColor(R.styleable.MyCustomView_subtitleColor, Color.GRAY);
         emptyTextViewTitle.setTextColor(titleColor);
         errorTextViewTitle.setTextColor(titleColor);
         loadingTextViewTitle.setTextColor(titleColor);
@@ -125,7 +125,6 @@ public class MyCustomView extends RelativeLayout
         errorTextViewSubTitle.setTextColor(subtitleColor);
         loadingTextViewSubTitle.setTextColor(subtitleColor);
     }
-
 
     public RecyclerView getRecyclerView() {
         return recyclerView;
