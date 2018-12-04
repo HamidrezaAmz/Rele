@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.tuyenmonkey.mkloader.MKLoader;
-import com.vasl.recyclerlibrary.globalEnums.ListStatuse;
+import com.vasl.recyclerlibrary.globalEnums.ListStatus;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewCallBack;
 import com.vasl.recyclerlibrary.utils.PublicFunction;
 
@@ -33,6 +33,10 @@ public class MyCustomView extends RelativeLayout
     private AppCompatTextView loadingTextViewTitle;
     private AppCompatTextView loadingTextViewSubTitle;
     private MKLoader mkLoader;
+
+    // layout_loading_bottom
+    private LinearLayout loadingBottomHolder;
+    private AppCompatTextView loadingBottomTextViewTitle;
 
     // recycler view
     private RecyclerView recyclerView;
@@ -88,6 +92,9 @@ public class MyCustomView extends RelativeLayout
         loadingTextViewTitle = view.findViewById(R.id.loadingTextViewTitle);
         loadingTextViewSubTitle = view.findViewById(R.id.loadingTextViewSubTitle);
         mkLoader = view.findViewById(R.id.mkLoader);
+
+        // loadingBottomHolder-view
+        loadingBottomHolder = view.findViewById(R.id.loadingBottomHolder);
 
         // recycler-view
         recyclerView = view.findViewById(R.id.recyclerView);
@@ -162,6 +169,14 @@ public class MyCustomView extends RelativeLayout
         loadingHolder.setVisibility(INVISIBLE);
     }
 
+    private void showLoadingBottom() {
+        loadingBottomHolder.setVisibility(VISIBLE);
+    }
+
+    private void hideLoadingBottom() {
+        loadingBottomHolder.setVisibility(INVISIBLE);
+    }
+
     private void showEmptyView() {
         emptyHolder.setVisibility(VISIBLE);
     }
@@ -194,12 +209,13 @@ public class MyCustomView extends RelativeLayout
         errorHolder.setVisibility(INVISIBLE);
     }
 
-    public void setStatus(ListStatuse status) {
+    public void setStatus(ListStatus status) {
         switch (status) {
             case LOADING:
                 hideLoading();
+                hideLoadingBottom();
                 hideEmptyView();
-                // hideRecyclerView(); // for lazy load in recycler-view
+                hideRecyclerView();
                 hideSwipe();
                 hideError();
 
@@ -209,6 +225,7 @@ public class MyCustomView extends RelativeLayout
                 break;
             case SUCCESS:
                 hideLoading();
+                hideLoadingBottom();
                 hideEmptyView();
                 hideRecyclerView();
                 hideSwipe();
@@ -220,6 +237,7 @@ public class MyCustomView extends RelativeLayout
                 break;
             case FAILURE:
                 hideLoading();
+                hideLoadingBottom();
                 hideEmptyView();
                 hideRecyclerView();
                 hideSwipe();
@@ -231,6 +249,7 @@ public class MyCustomView extends RelativeLayout
                 break;
             case EMPTY:
                 hideLoading();
+                hideLoadingBottom();
                 hideEmptyView();
                 hideRecyclerView();
                 hideSwipe();
@@ -242,6 +261,7 @@ public class MyCustomView extends RelativeLayout
                 break;
             case UNDEFINE:
                 hideLoading();
+                hideLoadingBottom();
                 hideEmptyView();
                 hideRecyclerView();
                 hideSwipe();
@@ -251,12 +271,23 @@ public class MyCustomView extends RelativeLayout
 
                 showError();
                 break;
-            case ENABLELISTLOADING:
+
+            case LOADING_BOTTOM:
+                hideLoading();
+                hideLoadingBottom();
+                hideEmptyView();
+                // hideRecyclerView();
+                hideSwipe();
+                hideError();
+
+                invalidate(); // for redraw
+
+                showLoadingBottom();
                 break;
-            case DISABLELISTLOADING:
-                break;
+
             default:
                 hideLoading();
+                hideLoadingBottom();
                 hideEmptyView();
                 hideRecyclerView();
                 hideSwipe();
@@ -270,7 +301,7 @@ public class MyCustomView extends RelativeLayout
 
     }
 
-    public void setStatus(ListStatuse status, @Nullable String title) {
+    public void setStatus(ListStatus status, @Nullable String title) {
         switch (status) {
             case LOADING:
                 showLoading();

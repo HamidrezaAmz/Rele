@@ -20,6 +20,13 @@
         <!--layout_loading-->
         <include layout="@layout/layout_loading" />
 
+        <!--layout_loading_bottom-->
+        <include
+            layout="@layout/layout_loading_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" />
+
         <!--empty view-->
         <include layout="@layout/layout_empty" />
 

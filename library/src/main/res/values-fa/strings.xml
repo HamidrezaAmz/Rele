@@ -11,5 +11,6 @@
     <string name="error_sub_title">اشکالی پیش آمده، لطفا مجدد تلاش کنید</string>
     <string name="loading_title">بارگذاری</string>
     <string name="loading_sub_title">لطفا چند لحظه صبر کنید</string>
+    <string name="please_wait">چند لحظه صبر کنید</string>
 
 </resources>

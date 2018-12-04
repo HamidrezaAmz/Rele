@@ -1,17 +1,17 @@
 package com.vasl.recyclerlibrary.globalEnums;
 
-public enum ListStatuse {
+public enum ListStatus {
+
     UNDEFINE("undefine"),
     FAILURE("failure"),
     LOADING("layout_loading"),
     SUCCESS("success"),
-    ENABLELISTLOADING("enable_list_loading"),
-    DISABLELISTLOADING("disable_list_loading"),
+    LOADING_BOTTOM("loading_bottom"),
     EMPTY("empty");
 
     private String value;
 
-    ListStatuse(String value) {
+    ListStatus(String value) {
         this.value = value;
     }
 
@@ -19,12 +19,12 @@ public enum ListStatuse {
         return value;
     }
 
-    public static ListStatuse Parse(String value) {
+    public static ListStatus Parse(String value) {
         if (value == null) {
             return UNDEFINE;
         }
-        ListStatuse[] arr$ = values();
-        for (ListStatuse val : arr$) {
+        ListStatus[] arr$ = values();
+        for (ListStatus val : arr$) {
             if (val.value.equals(value)) {
                 return val;
             }

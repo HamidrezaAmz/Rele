@@ -13,17 +13,22 @@
         <com.vasl.Library.Android.SquareImageView
             android:id="@+id/categoryIconImageView"
             android:layout_width="match_parent"
+            android:scaleType="centerCrop"
             android:layout_height="match_parent"
             android:background="@color/gray" />
 
         <TextView
             android:id="@+id/titleTextView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/transparentLoading"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
+            android:minWidth="50dp"
             android:padding="5dp"
             android:text="@string/app_name"
             android:textColor="@color/black"

@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.vasl.recyclerlibrary.MyCustomView;
-import com.vasl.recyclerlibrary.globalEnums.ListStatuse;
+import com.vasl.recyclerlibrary.globalEnums.ListStatus;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomAdapterCallBack;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewCallBack;
 import com.vasl.recyclerlibrary.globalObjects.RowModel;
@@ -22,7 +22,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity implements MyCustomViewCallBack {
 
+    private int index = 1;
+
     private MyCustomView myCustomView;
+
+    private RecyclerVerticalAdapter adapter;
+
+    private ArrayList<RowModel> rowModels = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +38,31 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
 
         myCustomView = findViewById(R.id.myCustomView);
 
+        RecyclerView recyclerView = myCustomView.getRecyclerView();
+
         myCustomView.setMyCustomViewCallBack(this);
 
-        myCustomView.setStatus(ListStatuse.LOADING);
+        myCustomView.setStatus(ListStatus.LOADING);
+
+        adapter = new RecyclerVerticalAdapter(MainActivity.this, rowModels);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+
+        adapter.setMyCustomAdapterCallBack(new MyCustomAdapterCallBack() {
+            @Override
+            public void richToEnd() {
+                myCustomView.setStatus(ListStatus.LOADING_BOTTOM);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        myList();
+                        myCustomView.setStatus(ListStatus.SUCCESS);
+                    }
+                }, 2000);
+            }
+        });
+        recyclerView.setAdapter(adapter);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -54,41 +82,19 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
 
     private void myList() {
 
-        myCustomView.setStatus(ListStatuse.LOADING);
+        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
 
-        RecyclerView recyclerView = myCustomView.getRecyclerView();
-
-        ArrayList<RowModel> rowModels = new ArrayList<>();
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-adservice-banners/2880.jpg", "1"));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-adservice-banners/2880.jpg", "2"));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-adservice-banners/2880.jpg", "3"));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-adservice-banners/2880.jpg", "4"));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-adservice-banners/2880.jpg", "5"));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-adservice-banners/2880.jpg", "6"));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-adservice-banners/2880.jpg", "7"));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-adservice-banners/2880.jpg", "8"));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-adservice-banners/2880.jpg", "9"));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-adservice-banners/2880.jpg", "10"));
-
-        RecyclerVerticalAdapter adapter = new RecyclerVerticalAdapter(MainActivity.this, rowModels);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
-        adapter.setMyCustomAdapterCallBack(new MyCustomAdapterCallBack() {
-            @Override
-            public void richToEnd() {
-                myCustomView.setStatus(ListStatuse.ENABLELISTLOADING);
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        myCustomView.setStatus(ListStatuse.DISABLELISTLOADING);
-                        myList();
-                    }
-                }, 2000);
-            }
-        });
-        recyclerView.setAdapter(adapter);
-
-        myCustomView.setStatus(ListStatuse.SUCCESS);
+        adapter.notifyDataSetChanged();
+        myCustomView.setStatus(ListStatus.SUCCESS);
     }
 
     @Override
@@ -118,16 +124,16 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_load:
-                myCustomView.setStatus(ListStatuse.LOADING);
+                myCustomView.setStatus(ListStatus.LOADING);
                 return true;
             case R.id.action_success:
-                myCustomView.setStatus(ListStatuse.SUCCESS);
+                myCustomView.setStatus(ListStatus.SUCCESS);
                 return true;
             case R.id.action_failure:
-                myCustomView.setStatus(ListStatuse.FAILURE);
+                myCustomView.setStatus(ListStatus.FAILURE);
                 return true;
             case R.id.action_empty:
-                myCustomView.setStatus(ListStatuse.EMPTY);
+                myCustomView.setStatus(ListStatus.EMPTY);
                 return true;
         }
         return false;

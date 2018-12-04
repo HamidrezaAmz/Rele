@@ -10,4 +10,5 @@
     <string name="error_sub_title">Something went wrong, \n please try again</string>
     <string name="loading_title">Loading</string>
     <string name="loading_sub_title">Please wait until request complete</string>
+    <string name="please_wait">Please wait</string>
 </resources>

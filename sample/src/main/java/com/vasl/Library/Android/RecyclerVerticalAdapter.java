@@ -6,9 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.RequestOptions;
 import com.vasl.recyclerlibrary.baseClasses.BaseRecyclerAdapter;
 import com.vasl.recyclerlibrary.globalObjects.RowModel;
 
@@ -46,8 +43,9 @@ public class RecyclerVerticalAdapter extends BaseRecyclerAdapter {
         GlideApp
                 .with(context)
                 .load(rowModel.getImageUrl())
-                .apply(new RequestOptions().transforms(new CenterCrop(), new RoundedCorners(100)))
                 .into(holder.imageView);
+
+        // .apply(new RequestOptions().transforms(new CenterCrop(), new RoundedCorners(100)))
     }
 
     @Override
