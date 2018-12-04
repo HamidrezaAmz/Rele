@@ -199,7 +199,7 @@ public class MyCustomView extends RelativeLayout
             case LOADING:
                 hideLoading();
                 hideEmptyView();
-                hideRecyclerView();
+                // hideRecyclerView(); // for lazy load in recycler-view
                 hideSwipe();
                 hideError();
 

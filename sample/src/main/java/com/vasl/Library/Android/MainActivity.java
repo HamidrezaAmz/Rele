@@ -22,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity implements MyCustomViewCallBack {
 
-    MyCustomView myCustomView;
+    private MyCustomView myCustomView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
                         myCustomView.setStatus(ListStatuse.DISABLELISTLOADING);
                         myList();
                     }
-                },2000);
+                }, 2000);
             }
         });
         recyclerView.setAdapter(adapter);
