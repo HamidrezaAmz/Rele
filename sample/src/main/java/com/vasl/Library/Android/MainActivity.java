@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.vasl.recyclerlibrary.MyCustomView;
 import com.vasl.recyclerlibrary.globalEnums.ListStatus;
@@ -20,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MainActivity extends AppCompatActivity implements MyCustomViewCallBack {
+public class MainActivity extends AppCompatActivity implements MyCustomViewCallBack, MyCustomAdapterCallBack {
 
     private int index = 1;
 
@@ -48,20 +47,8 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
 
-        adapter.setMyCustomAdapterCallBack(new MyCustomAdapterCallBack() {
-            @Override
-            public void richToEnd() {
-                myCustomView.setStatus(ListStatus.LOADING_BOTTOM);
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        myList();
-                        myCustomView.setStatus(ListStatus.SUCCESS);
-                    }
-                }, 2000);
-            }
-        });
+        adapter.setMyCustomAdapterCallBack(this);
+
         recyclerView.setAdapter(adapter);
 
         Handler handler = new Handler();
@@ -71,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
                 myList();
             }
         }, 2000);
-
     }
 
     @Override
@@ -108,8 +94,16 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
     }
 
     @Override
-    public void onEndOfList() {
-        Toast.makeText(this, "onEndList", Toast.LENGTH_SHORT).show();
+    public void richToEnd() {
+        myCustomView.setStatus(ListStatus.LOADING_BOTTOM);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                myList();
+                myCustomView.setStatus(ListStatus.SUCCESS);
+            }
+        }, 2000);
     }
 
     @Override
@@ -138,4 +132,5 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
         }
         return false;
     }
+
 }

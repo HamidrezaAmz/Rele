@@ -6,5 +6,4 @@ public interface MyCustomViewCallBack {
 
     public void onRefresh(int page);
 
-    public void onEndOfList();
 }
