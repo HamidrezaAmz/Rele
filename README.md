@@ -39,7 +39,7 @@ Step 2. Add the dependency
 
 ```gradle
 dependencies {
-    implementation 'com.github.HamidrezaAmz:Rele:v1.0.8'
+    implementation 'com.github.HamidrezaAmz:Rele:v1.1.0'
 }
 ```
 
@@ -70,10 +70,11 @@ myCustomView.setStatus(ListStatuse.LOADING);
 ```
 
 List of statuses
-- ListStatuse.LOADING
-- ListStatuse.FAILURE
-- ListStatuse.EMPTY
-- ListStatuse.SUCCESS
+- ListStatus.LOADING
+- ListStatus.LOADING_BOTTOM
+- ListStatus.FAILURE
+- ListStatus.EMPTY
+- ListStatus.SUCCESS
 
 
 ## Other Libraries
