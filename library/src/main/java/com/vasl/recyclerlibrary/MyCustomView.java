@@ -20,8 +20,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-public class MyCustomView extends RelativeLayout
-        implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class MyCustomView extends RelativeLayout implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private Context context;
 
