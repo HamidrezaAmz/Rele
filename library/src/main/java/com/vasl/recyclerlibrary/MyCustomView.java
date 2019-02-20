@@ -136,6 +136,10 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
         return recyclerView;
     }
 
+    public void setSwipeRefreshStatus(boolean enable) {
+        swipeRefreshLayout.setEnabled(enable);
+    }
+
     private void setErrorTitle(@Nullable String title) {
         if (!PublicFunction.StringIsEmptyOrNull(title)) {
             errorTextViewTitle.setText(title);
