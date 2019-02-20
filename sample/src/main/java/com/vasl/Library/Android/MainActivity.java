@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
 
         adapter.notifyDataSetChanged();
         myCustomView.setStatus(ListStatus.SUCCESS);
+        myCustomView.setSwipeRefreshStatus(false);
     }
 
     @Override
