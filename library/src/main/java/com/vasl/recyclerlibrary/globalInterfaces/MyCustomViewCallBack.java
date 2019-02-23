@@ -2,8 +2,8 @@ package com.vasl.recyclerlibrary.globalInterfaces;
 
 public interface MyCustomViewCallBack {
 
-    public void onRetryClicked();
+    void onRetryClicked();
 
-    public void onRefresh(int page);
+    void onRefresh(int page);
 
 }
