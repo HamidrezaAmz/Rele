@@ -12,12 +12,16 @@ import android.widget.RelativeLayout;
 
 import com.tuyenmonkey.mkloader.MKLoader;
 import com.vasl.recyclerlibrary.globalEnums.ListStatus;
+import com.vasl.recyclerlibrary.globalEnums.ScrollDirection;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewCallBack;
+import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewScrollCallBack;
 import com.vasl.recyclerlibrary.utils.PublicFunction;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class MyCustomView extends RelativeLayout implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
@@ -54,9 +58,14 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
 
     // interface
     private MyCustomViewCallBack myCustomViewCallBack;
+    private MyCustomViewScrollCallBack myCustomViewScrollCallBack;
 
     public void setMyCustomViewCallBack(MyCustomViewCallBack myCustomViewCallBack) {
         this.myCustomViewCallBack = myCustomViewCallBack;
+    }
+
+    public void setMyCustomViewScrollCallBack(MyCustomViewScrollCallBack myCustomViewScrollCallBack) {
+        this.myCustomViewScrollCallBack = myCustomViewScrollCallBack;
     }
 
     public MyCustomView(Context context) {
@@ -97,6 +106,24 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
 
         // recycler-view
         recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.addOnScrollListener(new OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0) {
+                    if (myCustomViewScrollCallBack != null)
+                        myCustomViewScrollCallBack.onScrollChange(ScrollDirection.UP);
+                } else {
+                    if (myCustomViewScrollCallBack != null)
+                        myCustomViewScrollCallBack.onScrollChange(ScrollDirection.DOWN);
+                }
+            }
+        });
 
         //  swipe-view
         swipeRefreshLayout = view.findViewById(R.id.swipeHolder);

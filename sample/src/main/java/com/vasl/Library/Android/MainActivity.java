@@ -3,14 +3,17 @@ package com.vasl.Library.Android;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.vasl.recyclerlibrary.MyCustomView;
 import com.vasl.recyclerlibrary.globalEnums.ListStatus;
+import com.vasl.recyclerlibrary.globalEnums.ScrollDirection;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomAdapterCallBack;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewCallBack;
+import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewScrollCallBack;
 import com.vasl.recyclerlibrary.globalObjects.RowModel;
 
 import java.util.ArrayList;
@@ -19,7 +22,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MainActivity extends AppCompatActivity implements MyCustomViewCallBack, MyCustomAdapterCallBack {
+public class MainActivity extends AppCompatActivity implements MyCustomViewCallBack, MyCustomAdapterCallBack, MyCustomViewScrollCallBack {
+
+    private static final String TAG = "MainActivity";
 
     private int index = 1;
 
@@ -48,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
 
         adapter.setMyCustomAdapterCallBack(this);
+
+        myCustomView.setMyCustomViewScrollCallBack(this);
 
         recyclerView.setAdapter(adapter);
 
@@ -134,4 +141,8 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
         return false;
     }
 
+    @Override
+    public void onScrollChange(ScrollDirection scrollDirection) {
+        Log.i(TAG, "onScrollChange: " + scrollDirection.getCode());
+    }
 }

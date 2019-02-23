@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.negar.testone"
+        applicationId "com.vasl.Library.Android"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
