@@ -90,7 +90,7 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
 
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View view = inflater.inflate(R.layout.layout_my_custom_view, this);
+        View view = inflater.inflate(R.layout.layout_my_custom_view, this, false);
 
         buttonRetry = view.findViewById(R.id.button_retry);
         buttonRetry.setOnClickListener(this);
