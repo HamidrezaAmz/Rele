@@ -88,9 +88,7 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
 
     private void init(AttributeSet attrs) {
 
-        LayoutInflater inflater = LayoutInflater.from(context);
-
-        View view = inflater.inflate(R.layout.layout_my_custom_view, this, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.layout_my_custom_view, this, false);
 
         buttonRetry = view.findViewById(R.id.button_retry);
         buttonRetry.setOnClickListener(this);
@@ -142,6 +140,7 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
         //color attr set
         setColor(attrs);
 
+        addView(view);
     }
 
     private void setColor(AttributeSet attrs) {
