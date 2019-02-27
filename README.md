@@ -39,7 +39,7 @@ Step 2. Add the dependency
 
 ```gradle
 dependencies {
-    implementation 'com.github.HamidrezaAmz:Rele:1.1.3'
+    implementation 'com.github.HamidrezaAmz:Rele:1.1.7'
 }
 ```
 
