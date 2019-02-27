@@ -1,7 +1,5 @@
 package com.vasl.recyclerlibrary.baseClasses;
 
-import android.graphics.Canvas;
-
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomAdapterCallBack;
 import com.vasl.recyclerlibrary.utils.LogHelper;
 import com.vasl.recyclerlibrary.utils.PublicValue;
@@ -9,14 +7,13 @@ import com.vasl.recyclerlibrary.utils.PublicValue;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public abstract class BaseRecyclerAdapterItemBaseScroll extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     int lastPosition = -1;
 
-    private LogHelper logHelper = new LogHelper(BaseRecyclerAdapter.class);
+    private LogHelper logHelper = new LogHelper(BaseRecyclerAdapterItemBaseScroll.class);
 
     private MyCustomAdapterCallBack myCustomAdapterCallBack;
 
@@ -36,8 +33,7 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
                 return lastPosition;
             }
             lastPosition = position;
-            float percentage = ((position + 1) * 100 / adapterSize);
-            if (percentage > PublicValue.percentVerticalNotify) {
+            if (adapterSize - position <= 5) {
                 if (myCustomAdapterCallBack != null) {
                     myCustomAdapterCallBack.richToEnd();
                 }
