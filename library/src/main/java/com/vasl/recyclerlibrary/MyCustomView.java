@@ -16,11 +16,9 @@ import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewCallBack;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewScrollCallBack;
 import com.vasl.recyclerlibrary.utils.PublicFunction;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class MyCustomView extends RelativeLayout implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
@@ -104,23 +102,6 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
 
         // recycler-view
         recyclerView = view.findViewById(R.id.recyclerView);
-        /*recyclerView.addOnScrollListener(new OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                // direction integers: -1 for up, 1 for down, 0 will always return false
-                if (!recyclerView.canScrollVertically(1)) {
-                    if (myCustomViewScrollCallBack != null)
-                        myCustomViewScrollCallBack.endOfList();
-                }
-            }
-
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-
-            }
-        });*/
 
         //  swipe-view
         swipeRefreshLayout = view.findViewById(R.id.swipeHolder);

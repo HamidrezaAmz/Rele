@@ -2,7 +2,6 @@ package com.vasl.recyclerlibrary.baseClasses;
 
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomAdapterCallBack;
 import com.vasl.recyclerlibrary.utils.LogHelper;
-import com.vasl.recyclerlibrary.utils.PublicValue;
 
 import java.util.List;
 

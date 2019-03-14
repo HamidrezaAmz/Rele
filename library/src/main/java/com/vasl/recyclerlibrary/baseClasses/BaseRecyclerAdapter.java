@@ -1,14 +1,11 @@
 package com.vasl.recyclerlibrary.baseClasses;
 
-import android.graphics.Canvas;
-
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomAdapterCallBack;
 import com.vasl.recyclerlibrary.utils.LogHelper;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

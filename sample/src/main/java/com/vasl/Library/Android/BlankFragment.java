@@ -1,6 +1,5 @@
 package com.vasl.Library.Android;
 
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -19,7 +18,6 @@ import java.util.ArrayList;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,8 +54,6 @@ public class BlankFragment extends Fragment implements MyCustomViewCallBack, MyC
         RecyclerView recyclerView = myCustomView.getRecyclerView();
 
         myCustomView.setMyCustomViewCallBack(this);
-
-        // myCustomView.setMyCustomViewScrollCallBack(this);
 
         myCustomView.setStatus(ListStatus.LOADING);
 
