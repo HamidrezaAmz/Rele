@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.vasl.recyclerlibrary.baseClasses.BaseRecyclerAdapter;
+import com.vasl.recyclerlibrary.baseClasses.BaseRecyclerAdapterItemBaseScroll;
 import com.vasl.recyclerlibrary.globalObjects.RowModel;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class RecyclerVerticalAdapter extends BaseRecyclerAdapter {
+public class RecyclerVerticalAdapter extends BaseRecyclerAdapterItemBaseScroll {
 
     private Context context;
 
