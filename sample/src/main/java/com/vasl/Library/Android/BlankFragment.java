@@ -1,18 +1,16 @@
 package com.vasl.Library.Android;
 
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.vasl.recyclerlibrary.MyCustomView;
 import com.vasl.recyclerlibrary.globalEnums.ListStatus;
-import com.vasl.recyclerlibrary.globalEnums.ScrollDirection;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomAdapterCallBack;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewCallBack;
-import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewScrollCallBack;
 import com.vasl.recyclerlibrary.globalObjects.RowModel;
 
 import java.util.ArrayList;
@@ -21,13 +19,18 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BlankFragment extends Fragment implements MyCustomViewCallBack, MyCustomAdapterCallBack, MyCustomViewScrollCallBack {
+public class BlankFragment extends Fragment implements MyCustomViewCallBack, MyCustomAdapterCallBack {
 
     private int index = 1;
+
+    private int start_page = 1;
+
+    private int curr_page = 1;
+
+    private TextView textView;
 
     private MyCustomView myCustomView;
 
@@ -40,12 +43,13 @@ public class BlankFragment extends Fragment implements MyCustomViewCallBack, MyC
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View inflate = inflater.inflate(R.layout.fragment_blank, container, false);
 
         myCustomView = inflate.findViewById(R.id.myCustomView);
+
+        textView = inflate.findViewById(R.id.index);
 
         RecyclerView recyclerView = myCustomView.getRecyclerView();
 
@@ -53,71 +57,65 @@ public class BlankFragment extends Fragment implements MyCustomViewCallBack, MyC
 
         myCustomView.setStatus(ListStatus.LOADING);
 
-        adapter = new RecyclerVerticalAdapter(getContext(), rowModels);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        adapter = new RecyclerVerticalAdapter(getActivity(), rowModels);
 
         adapter.setMyCustomAdapterCallBack(this);
 
-        myCustomView.setMyCustomViewScrollCallBack(this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
+
 
         recyclerView.setAdapter(adapter);
 
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                myList();
-            }
-        }, 2000);
+        getList(start_page);
 
         return inflate;
     }
 
-    private void myList() {
+    private void getList(int page) {
 
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+        textView.setText("PAGE : " + page);
 
-        adapter.notifyDataSetChanged();
-        myCustomView.setStatus(ListStatus.SUCCESS);
-        myCustomView.setSwipeRefreshStatus(false);
-    }
+        if (page == 1)
+            myCustomView.setStatus(ListStatus.LOADING);
+        else
+            myCustomView.setStatus(ListStatus.LOADING_BOTTOM);
 
-    @Override
-    public void onRetryClicked() {
-        myList();
-    }
-
-    @Override
-    public void onRefresh(int page) {
-        myList();
-    }
-
-    @Override
-    public void richToEnd() {
-        myCustomView.setStatus(ListStatus.LOADING_BOTTOM);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                myList();
+
+                rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+                rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+                rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+                rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+                rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+                rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+                rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+                rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+                rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+                rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+
+                adapter.notifyDataSetChanged();
                 myCustomView.setStatus(ListStatus.SUCCESS);
+                myCustomView.setSwipeRefreshStatus(false);
             }
-        }, 2000);
+        }, 1000);
     }
 
+    @Override
+    public void onRetryClicked() {
+        getList(start_page);
+    }
 
     @Override
-    public void onScrollChange(ScrollDirection scrollDirection) {
+    public void onRefresh(int page) {
+        getList(start_page);
+    }
 
+    @Override
+    public void richToEnd() {
+        curr_page = curr_page + 1;
+        getList(curr_page);
     }
 }

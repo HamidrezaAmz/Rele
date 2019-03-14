@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.vasl.recyclerlibrary.baseClasses.BaseRecyclerAdapter;
-import com.vasl.recyclerlibrary.baseClasses.BaseRecyclerAdapterItemBaseScroll;
 import com.vasl.recyclerlibrary.globalObjects.RowModel;
 
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class RecyclerVerticalAdapter extends BaseRecyclerAdapterItemBaseScroll {
+public class RecyclerVerticalAdapter extends BaseRecyclerAdapter {
 
     private Context context;
 
@@ -46,7 +45,6 @@ public class RecyclerVerticalAdapter extends BaseRecyclerAdapterItemBaseScroll {
                 .load(rowModel.getImageUrl())
                 .into(holder.imageView);
 
-        // .apply(new RequestOptions().transforms(new CenterCrop(), new RoundedCorners(100)))
     }
 
     @Override
