@@ -1,7 +1,9 @@
 package com.vasl.recyclerlibrary.globalInterfaces;
 
+import com.vasl.recyclerlibrary.globalEnums.ScrollDirection;
+
 public interface MyCustomViewScrollCallBack {
 
-    void endOfList();
+    void onScrollChange(ScrollDirection scrollDirection);
 
 }

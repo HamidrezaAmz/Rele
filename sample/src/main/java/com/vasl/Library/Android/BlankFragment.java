@@ -9,8 +9,10 @@ import android.widget.TextView;
 
 import com.vasl.recyclerlibrary.MyCustomView;
 import com.vasl.recyclerlibrary.globalEnums.ListStatus;
+import com.vasl.recyclerlibrary.globalEnums.ScrollDirection;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomAdapterCallBack;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewCallBack;
+import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewScrollCallBack;
 import com.vasl.recyclerlibrary.globalObjects.RowModel;
 
 import java.util.ArrayList;
@@ -22,7 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BlankFragment extends Fragment implements MyCustomViewCallBack, MyCustomAdapterCallBack {
+public class BlankFragment extends Fragment implements MyCustomViewCallBack, MyCustomAdapterCallBack, MyCustomViewScrollCallBack {
 
     private int index = 1;
 
@@ -55,11 +57,15 @@ public class BlankFragment extends Fragment implements MyCustomViewCallBack, MyC
 
         myCustomView.setMyCustomViewCallBack(this);
 
+        myCustomView.setMyCustomViewScrollCallBack(this);
+
+        adapter.setMyCustomAdapterCallBack(this);
+
+
         myCustomView.setStatus(ListStatus.LOADING);
 
         adapter = new RecyclerVerticalAdapter(getActivity(), rowModels);
 
-        adapter.setMyCustomAdapterCallBack(this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
 
@@ -117,5 +123,10 @@ public class BlankFragment extends Fragment implements MyCustomViewCallBack, MyC
     public void richToEnd() {
         curr_page = curr_page + 1;
         getList(curr_page);
+    }
+
+    @Override
+    public void onScrollChange(ScrollDirection scrollDirection) {
+
     }
 }
