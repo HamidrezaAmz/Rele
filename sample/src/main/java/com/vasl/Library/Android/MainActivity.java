@@ -3,15 +3,12 @@ package com.vasl.Library.Android;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.vasl.recyclerlibrary.MyCustomView;
 import com.vasl.recyclerlibrary.globalEnums.ListStatus;
-import com.vasl.recyclerlibrary.globalEnums.ScrollDirection;
-import com.vasl.recyclerlibrary.globalInterfaces.MyCustomAdapterCallBack;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewCallBack;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewScrollCallBack;
 import com.vasl.recyclerlibrary.globalObjects.RowModel;
@@ -22,11 +19,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MainActivity extends AppCompatActivity implements MyCustomViewCallBack, MyCustomAdapterCallBack, MyCustomViewScrollCallBack {
+public class MainActivity extends AppCompatActivity implements MyCustomViewCallBack, MyCustomViewScrollCallBack {
 
     private static final String TAG = "MainActivity";
 
     private int index = 1;
+
+    private int start_page = 1;
+
+    private int curr_page = 1;
 
     private MyCustomView myCustomView;
 
@@ -52,19 +53,11 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
 
-        adapter.setMyCustomAdapterCallBack(this);
-
         myCustomView.setMyCustomViewScrollCallBack(this);
 
         recyclerView.setAdapter(adapter);
 
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                myList();
-            }
-        }, 2000);
+        getList(start_page);
     }
 
     @Override
@@ -73,45 +66,44 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
         LocaleHelper.onAttach(newBase);
     }
 
-    private void myList() {
+    private void getList(int page) {
 
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
-        rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+        if (page == 1)
+            myCustomView.setStatus(ListStatus.LOADING);
+        else
+            myCustomView.setStatus(ListStatus.LOADING_BOTTOM);
 
-        adapter.notifyDataSetChanged();
-        myCustomView.setStatus(ListStatus.SUCCESS);
-        myCustomView.setSwipeRefreshStatus(false);
-    }
-
-    @Override
-    public void onRetryClicked() {
-        myList();
-    }
-
-    @Override
-    public void onRefresh(int page) {
-        myList();
-    }
-
-    @Override
-    public void richToEnd() {
-        myCustomView.setStatus(ListStatus.LOADING_BOTTOM);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                myList();
+
+                rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+                rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+                rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+                rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+                rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+                rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+                rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+                rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+                rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+                rowModels.add(new RowModel("https://dkstatics-public.digikala.com/digikala-products/4308693.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80", "" + index++));
+
+                adapter.notifyDataSetChanged();
                 myCustomView.setStatus(ListStatus.SUCCESS);
+                myCustomView.setSwipeRefreshStatus(false);
             }
-        }, 2000);
+        }, 1000);
+    }
+
+    @Override
+    public void onRetryClicked() {
+        getList(start_page);
+    }
+
+    @Override
+    public void onRefresh(int page) {
+        getList(start_page);
     }
 
     @Override
@@ -142,7 +134,8 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
     }
 
     @Override
-    public void onScrollChange(ScrollDirection scrollDirection) {
-        Log.i(TAG, "onScrollChange: " + scrollDirection.getCode());
+    public void endOfList() {
+        curr_page = curr_page + 1;
+        getList(curr_page);
     }
 }

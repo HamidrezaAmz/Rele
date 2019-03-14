@@ -45,7 +45,6 @@ public class RecyclerVerticalAdapter extends BaseRecyclerAdapter {
                 .load(rowModel.getImageUrl())
                 .into(holder.imageView);
 
-        // .apply(new RequestOptions().transforms(new CenterCrop(), new RoundedCorners(100)))
     }
 
     @Override

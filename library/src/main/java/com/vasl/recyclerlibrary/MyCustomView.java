@@ -12,7 +12,6 @@ import android.widget.RelativeLayout;
 
 import com.tuyenmonkey.mkloader.MKLoader;
 import com.vasl.recyclerlibrary.globalEnums.ListStatus;
-import com.vasl.recyclerlibrary.globalEnums.ScrollDirection;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewCallBack;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewScrollCallBack;
 import com.vasl.recyclerlibrary.utils.PublicFunction;
@@ -90,6 +89,7 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
 
         View view = LayoutInflater.from(context).inflate(R.layout.layout_my_custom_view, this, false);
 
+        // retry-view
         buttonRetry = view.findViewById(R.id.button_retry);
         buttonRetry.setOnClickListener(this);
 
@@ -104,24 +104,23 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
 
         // recycler-view
         recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.addOnScrollListener(new OnScrollListener() {
+        /*recyclerView.addOnScrollListener(new OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
+                // direction integers: -1 for up, 1 for down, 0 will always return false
+                if (!recyclerView.canScrollVertically(1)) {
+                    if (myCustomViewScrollCallBack != null)
+                        myCustomViewScrollCallBack.endOfList();
+                }
             }
 
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if (dy > 0) {
-                    if (myCustomViewScrollCallBack != null)
-                        myCustomViewScrollCallBack.onScrollChange(ScrollDirection.UP);
-                } else {
-                    if (myCustomViewScrollCallBack != null)
-                        myCustomViewScrollCallBack.onScrollChange(ScrollDirection.DOWN);
-                }
+
             }
-        });
+        });*/
 
         //  swipe-view
         swipeRefreshLayout = view.findViewById(R.id.swipeHolder);
