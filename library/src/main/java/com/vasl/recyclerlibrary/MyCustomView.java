@@ -3,12 +3,22 @@ package com.vasl.recyclerlibrary;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.tuyenmonkey.mkloader.MKLoader;
 import com.vasl.recyclerlibrary.globalEnums.ListStatus;
@@ -17,18 +27,14 @@ import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewCallBack;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewScrollCallBack;
 import com.vasl.recyclerlibrary.utils.PublicFunction;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 public class MyCustomView extends RelativeLayout implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private Context context;
 
     int titleColor;
     int subtitleColor;
+    int retryButtonColor;
+    int retryButtonTextColor;
 
     // layout_loading
     private LinearLayout loadingHolder;
@@ -150,12 +156,26 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
         TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.MyCustomView);
         titleColor = ta.getColor(R.styleable.MyCustomView_titleColor, Color.WHITE);
         subtitleColor = ta.getColor(R.styleable.MyCustomView_subtitleColor, Color.GRAY);
+        retryButtonColor = ta.getColor(R.styleable.MyCustomView_retryButtonColor, Color.GRAY);
+        retryButtonTextColor = ta.getColor(R.styleable.MyCustomView_retryButtonTextColor, Color.GRAY);
+
         emptyTextViewTitle.setTextColor(titleColor);
         errorTextViewTitle.setTextColor(titleColor);
         loadingTextViewTitle.setTextColor(titleColor);
         emptyTextViewSubTitle.setTextColor(subtitleColor);
         errorTextViewSubTitle.setTextColor(subtitleColor);
         loadingTextViewSubTitle.setTextColor(subtitleColor);
+
+        buttonRetry.setTextColor(retryButtonTextColor);
+
+        Drawable background = buttonRetry.getBackground();
+        if (background instanceof ShapeDrawable) {
+            ((ShapeDrawable) background).getPaint().setColor(retryButtonColor);
+        } else if (background instanceof GradientDrawable) {
+            ((GradientDrawable) background).setColor(retryButtonColor);
+        } else if (background instanceof ColorDrawable) {
+            ((ColorDrawable) background).setColor(retryButtonColor);
+        }
     }
 
     public RecyclerView getRecyclerView() {

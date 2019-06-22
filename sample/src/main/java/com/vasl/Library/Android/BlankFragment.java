@@ -7,6 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.vasl.recyclerlibrary.MyCustomView;
 import com.vasl.recyclerlibrary.globalEnums.ListStatus;
 import com.vasl.recyclerlibrary.globalEnums.ScrollDirection;
@@ -16,10 +20,6 @@ import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewScrollCallBack;
 import com.vasl.recyclerlibrary.globalObjects.RowModel;
 
 import java.util.ArrayList;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,16 +59,13 @@ public class BlankFragment extends Fragment implements MyCustomViewCallBack, MyC
 
         myCustomView.setMyCustomViewScrollCallBack(this);
 
-        adapter.setMyCustomAdapterCallBack(this);
-
-
         myCustomView.setStatus(ListStatus.LOADING);
 
         adapter = new RecyclerVerticalAdapter(getActivity(), rowModels);
 
+        adapter.setMyCustomAdapterCallBack(this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
-
 
         recyclerView.setAdapter(adapter);
 
