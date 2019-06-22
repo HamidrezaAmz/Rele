@@ -13,6 +13,8 @@
         android:id="@+id/myCustomView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:retryButtonColor="@color/purple"
+        app:retryButtonTextColor="@color/black"
         app:subtitleColor="@color/red"
         app:titleColor="@color/blue_color" />
 
