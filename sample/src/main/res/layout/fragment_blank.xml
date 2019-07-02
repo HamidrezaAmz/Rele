@@ -14,11 +14,30 @@
         android:background="#E07E7E"
         android:padding="15dp" />
 
-    <com.vasl.recyclerlibrary.MyCustomView
-        android:id="@+id/myCustomView"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:subtitleColor="@color/red"
-        app:titleColor="@color/blue_color" />
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:background="#852197" />
+
+            <com.vasl.recyclerlibrary.MyCustomView
+                android:id="@+id/myCustomView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:subtitleColor="@color/red"
+                app:titleColor="@color/blue_color" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

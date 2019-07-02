@@ -9,6 +9,7 @@ import android.view.MenuItem;
 
 import com.vasl.recyclerlibrary.MyCustomView;
 import com.vasl.recyclerlibrary.globalEnums.ListStatus;
+import com.vasl.recyclerlibrary.globalEnums.ScrollDirection;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewCallBack;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewScrollCallBack;
 import com.vasl.recyclerlibrary.globalObjects.RowModel;
@@ -134,8 +135,7 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
     }
 
     @Override
-    public void endOfList() {
-        curr_page = curr_page + 1;
-        getList(curr_page);
+    public void onScrollChange(ScrollDirection scrollDirection) {
+
     }
 }

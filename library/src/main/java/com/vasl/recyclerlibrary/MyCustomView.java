@@ -10,6 +10,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.tuyenmonkey.mkloader.MKLoader;
 import com.vasl.recyclerlibrary.globalEnums.ListStatus;
 import com.vasl.recyclerlibrary.globalEnums.ScrollDirection;
@@ -30,6 +36,8 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
 
     int titleColor;
     int subtitleColor;
+    int retryButtonColor;
+    int retryButtonTextColor;
 
     // layout_loading
     private LinearLayout loadingHolder;
@@ -155,12 +163,26 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
         TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.MyCustomView);
         titleColor = ta.getColor(R.styleable.MyCustomView_titleColor, Color.WHITE);
         subtitleColor = ta.getColor(R.styleable.MyCustomView_subtitleColor, Color.GRAY);
+        retryButtonColor = ta.getColor(R.styleable.MyCustomView_retryButtonColor, Color.GRAY);
+        retryButtonTextColor = ta.getColor(R.styleable.MyCustomView_retryButtonTextColor, Color.GRAY);
+
         emptyTextViewTitle.setTextColor(titleColor);
         errorTextViewTitle.setTextColor(titleColor);
         loadingTextViewTitle.setTextColor(titleColor);
         emptyTextViewSubTitle.setTextColor(subtitleColor);
         errorTextViewSubTitle.setTextColor(subtitleColor);
         loadingTextViewSubTitle.setTextColor(subtitleColor);
+
+        buttonRetry.setTextColor(retryButtonTextColor);
+
+        Drawable background = buttonRetry.getBackground();
+        if (background instanceof ShapeDrawable) {
+            ((ShapeDrawable) background).getPaint().setColor(retryButtonColor);
+        } else if (background instanceof GradientDrawable) {
+            ((GradientDrawable) background).setColor(retryButtonColor);
+        } else if (background instanceof ColorDrawable) {
+            ((ColorDrawable) background).setColor(retryButtonColor);
+        }
     }
 
     public RecyclerView getRecyclerView() {

@@ -2,13 +2,15 @@
 <resources>
 
     <declare-styleable name="CustomImageView">
-        <attr name="isCircle" format="boolean" />
-        <attr name="gravity" format="dimension" />
+        <attr name="isCircle"               format="boolean" />
+        <attr name="gravity"                format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="MyCustomView">
-        <attr name="titleColor" format="color" />
-        <attr name="subtitleColor" format="color" />
+        <attr name="titleColor"             format="color" />
+        <attr name="subtitleColor"          format="color" />
+        <attr name="retryButtonColor"       format="color" />
+        <attr name="retryButtonTextColor"   format="color" />
     </declare-styleable>
 
 </resources>
