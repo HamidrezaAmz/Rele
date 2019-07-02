@@ -269,11 +269,11 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
         errorHolder.setVisibility(INVISIBLE);
     }
 
-    private void hideErrorImageView() {
+    public void hideErrorImageView() {
         errorImageView.setVisibility(GONE);
     }
 
-    private void hideEmptyImageView() {
+    public void hideEmptyImageView() {
         emptyImageView.setVisibility(GONE);
     }
 
