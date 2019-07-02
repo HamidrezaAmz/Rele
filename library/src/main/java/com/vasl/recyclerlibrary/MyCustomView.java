@@ -19,6 +19,7 @@ import com.vasl.recyclerlibrary.utils.PublicFunction;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -46,11 +47,13 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
     // empty view
     private LinearLayout emptyHolder;
     private AppCompatTextView emptyTextViewTitle, emptyTextViewSubTitle;
+    private AppCompatImageView emptyImageView;
 
     // error view
     private LinearLayout errorHolder;
     private AppCompatTextView errorTextViewTitle, errorTextViewSubTitle;
     private Button buttonRetry;
+    private AppCompatImageView errorImageView;
 
     // swipe
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -131,11 +134,13 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
         emptyHolder = view.findViewById(R.id.emptyHolder);
         emptyTextViewTitle = view.findViewById(R.id.emptyTextViewTitle);
         emptyTextViewSubTitle = view.findViewById(R.id.emptyTextViewSubTitle);
+        emptyImageView = view.findViewById(R.id.emptyImageView);
 
         //error-view
         errorHolder = view.findViewById(R.id.errorHolder);
         errorTextViewTitle = view.findViewById(R.id.errorTextViewTitle);
         errorTextViewSubTitle = view.findViewById(R.id.errorTextViewSubTitle);
+        errorImageView = view.findViewById(R.id.errorImageView);
 
         //color attr set
         setColor(attrs);
@@ -236,6 +241,14 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
 
     private void hideError() {
         errorHolder.setVisibility(INVISIBLE);
+    }
+
+    private void hideErrorImageView() {
+        errorImageView.setVisibility(GONE);
+    }
+
+    private void hideEmptyImageView() {
+        emptyImageView.setVisibility(GONE);
     }
 
     public void setStatus(ListStatus status) {
