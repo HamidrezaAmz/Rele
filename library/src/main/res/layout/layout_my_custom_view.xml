@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    <com.vasl.recyclerlibrary.customViews.CustomSwipeRefreshLayout
         android:id="@+id/swipeHolder"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -11,7 +11,7 @@
         <!--recycler-view-->
         <include layout="@layout/layout_recycler_view" />
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </com.vasl.recyclerlibrary.customViews.CustomSwipeRefreshLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

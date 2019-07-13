@@ -16,23 +16,18 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.tuyenmonkey.mkloader.MKLoader;
+import com.vasl.recyclerlibrary.customViews.CustomSwipeRefreshLayout;
 import com.vasl.recyclerlibrary.globalEnums.ListStatus;
 import com.vasl.recyclerlibrary.globalEnums.ScrollDirection;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewCallBack;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewScrollCallBack;
 import com.vasl.recyclerlibrary.utils.PublicFunction;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class MyCustomView extends RelativeLayout implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
@@ -68,7 +63,7 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
     private AppCompatImageView errorImageView;
 
     // swipe
-    private SwipeRefreshLayout swipeRefreshLayout;
+    private CustomSwipeRefreshLayout swipeRefreshLayout;
 
     // interface
     private MyCustomViewCallBack myCustomViewCallBack;
