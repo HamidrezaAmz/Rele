@@ -6,21 +6,23 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.vasl.recyclerlibrary.MyCustomView;
 import com.vasl.recyclerlibrary.globalEnums.ListStatus;
 import com.vasl.recyclerlibrary.globalEnums.ScrollDirection;
+import com.vasl.recyclerlibrary.globalInterfaces.MyCustomAdapterCallBack;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewCallBack;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewScrollCallBack;
 import com.vasl.recyclerlibrary.globalObjects.RowModel;
 
 import java.util.ArrayList;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-public class MainActivity extends AppCompatActivity implements MyCustomViewCallBack, MyCustomViewScrollCallBack {
+public class MainActivity extends AppCompatActivity implements MyCustomViewCallBack, MyCustomViewScrollCallBack, MyCustomAdapterCallBack {
 
     private static final String TAG = "MainActivity";
 
@@ -52,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
 
         adapter = new RecyclerVerticalAdapter(MainActivity.this, rowModels);
 
+        adapter.setMyCustomAdapterCallBack(this);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
 
         myCustomView.setMyCustomViewScrollCallBack(this);
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
         recyclerView.setAdapter(adapter);
 
         getList(start_page);
+
     }
 
     @Override
@@ -92,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
 
                 adapter.notifyDataSetChanged();
                 myCustomView.setStatus(ListStatus.SUCCESS);
-                myCustomView.setSwipeRefreshStatus(false);
+                myCustomView.setSwipeRefreshStatus(true);
             }
         }, 1000);
     }
@@ -137,5 +142,10 @@ public class MainActivity extends AppCompatActivity implements MyCustomViewCallB
     @Override
     public void onScrollChange(ScrollDirection scrollDirection) {
 
+    }
+
+    @Override
+    public void richToEnd() {
+        Toast.makeText(this, "richToEnd()", Toast.LENGTH_SHORT).show();
     }
 }
