@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -37,6 +38,7 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
     int subtitleColor;
     int retryButtonColor;
     int retryButtonTextColor;
+    int iconTintColor;
 
     // layout_loading
     private LinearLayout loadingHolder;
@@ -160,10 +162,16 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
             return;
         }
         TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.MyCustomView);
+
         titleColor = ta.getColor(R.styleable.MyCustomView_titleColor, Color.WHITE);
         subtitleColor = ta.getColor(R.styleable.MyCustomView_subtitleColor, Color.GRAY);
         retryButtonColor = ta.getColor(R.styleable.MyCustomView_retryButtonColor, Color.GRAY);
         retryButtonTextColor = ta.getColor(R.styleable.MyCustomView_retryButtonTextColor, Color.GRAY);
+        iconTintColor = ta.getColor(R.styleable.MyCustomView_iconBackGroundColor, Color.GRAY);
+
+        CharSequence title = ta.getString(R.styleable.MyCustomView_emptyTitle);
+        if (title != null)
+            setEmptyTitle(title.toString());
 
         emptyTextViewTitle.setTextColor(titleColor);
         errorTextViewTitle.setTextColor(titleColor);
@@ -171,6 +179,11 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
         emptyTextViewSubTitle.setTextColor(subtitleColor);
         errorTextViewSubTitle.setTextColor(subtitleColor);
         loadingTextViewSubTitle.setTextColor(subtitleColor);
+
+        //set tint color on icon
+        emptyImageView.setColorFilter(iconTintColor, android.graphics.PorterDuff.Mode.MULTIPLY);
+        errorImageView.setColorFilter(iconTintColor, android.graphics.PorterDuff.Mode.MULTIPLY);
+
 
         buttonRetry.setTextColor(retryButtonTextColor);
 

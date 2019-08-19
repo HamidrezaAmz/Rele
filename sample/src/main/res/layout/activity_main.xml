@@ -13,9 +13,11 @@
         android:id="@+id/myCustomView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:emptyTitle="helloooooooooo"
         app:retryButtonColor="@color/purple"
-        app:retryButtonTextColor="@color/black"
+        app:retryButtonTextColor="@color/gray"
         app:subtitleColor="@color/red"
-        app:titleColor="@color/blue_color" />
+        app:titleColor="@color/blue_color"
+        app:iconBackGroundColor="@color/black"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

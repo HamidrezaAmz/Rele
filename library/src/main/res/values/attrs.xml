@@ -8,9 +8,11 @@
 
     <declare-styleable name="MyCustomView">
         <attr name="titleColor"             format="color" />
+        <attr name="iconBackGroundColor"    format="color" />
         <attr name="subtitleColor"          format="color" />
         <attr name="retryButtonColor"       format="color" />
         <attr name="retryButtonTextColor"   format="color" />
+        <attr name="emptyTitle"             format="string" />
     </declare-styleable>
 
 </resources>
