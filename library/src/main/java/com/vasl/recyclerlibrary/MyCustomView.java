@@ -162,12 +162,16 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
             return;
         }
         TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.MyCustomView);
+
         titleColor = ta.getColor(R.styleable.MyCustomView_titleColor, Color.WHITE);
         subtitleColor = ta.getColor(R.styleable.MyCustomView_subtitleColor, Color.GRAY);
         retryButtonColor = ta.getColor(R.styleable.MyCustomView_retryButtonColor, Color.GRAY);
         retryButtonTextColor = ta.getColor(R.styleable.MyCustomView_retryButtonTextColor, Color.GRAY);
         iconTintColor = ta.getColor(R.styleable.MyCustomView_iconBackGroundColor, Color.GRAY);
 
+        CharSequence title = ta.getString(R.styleable.MyCustomView_emptyTitle);
+        if (title != null)
+            setEmptyTitle(title.toString());
 
         emptyTextViewTitle.setTextColor(titleColor);
         errorTextViewTitle.setTextColor(titleColor);

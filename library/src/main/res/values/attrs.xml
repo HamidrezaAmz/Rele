@@ -12,6 +12,7 @@
         <attr name="subtitleColor"          format="color" />
         <attr name="retryButtonColor"       format="color" />
         <attr name="retryButtonTextColor"   format="color" />
+        <attr name="emptyTitle"             format="string" />
     </declare-styleable>
 
 </resources>
