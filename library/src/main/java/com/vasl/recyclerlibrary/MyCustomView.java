@@ -374,53 +374,96 @@ public class MyCustomView extends RelativeLayout implements View.OnClickListener
                 showError();
                 break;
         }
-
     }
 
-    public void setStatus(ListStatus status, @Nullable String title) {
+    public void setStatus(ListStatus status, @Nullable String subTitle) {
         switch (status) {
             case LOADING:
-                showLoading();
+                hideLoading();
+                hideLoadingBottom();
                 hideEmptyView();
                 hideRecyclerView();
                 hideSwipe();
                 hideError();
+
+                invalidate(); // for redraw
+
+                showLoading();
                 break;
             case SUCCESS:
                 hideLoading();
-                hideEmptyView();
-                showRecyclerView();
-                hideSwipe();
-                hideError();
-                break;
-            case FAILURE:
-                hideLoading();
+                hideLoadingBottom();
                 hideEmptyView();
                 hideRecyclerView();
                 hideSwipe();
-                setErrorTitle(title);
+                hideError();
+
+                invalidate(); // for redraw
+
+                showRecyclerView();
+                break;
+            case FAILURE:
+                hideLoading();
+                hideLoadingBottom();
+                hideEmptyView();
+                hideRecyclerView();
+                hideSwipe();
+                hideError();
+                setErrorSubTitle(subTitle);
+
+                invalidate(); // for redraw
+
                 showError();
                 break;
             case EMPTY:
                 hideLoading();
+                hideLoadingBottom();
+                hideEmptyView();
                 hideRecyclerView();
                 hideSwipe();
                 hideError();
-                setEmptyTitle(title);
+                setEmptySubTitle(subTitle);
+
+                invalidate(); // for redraw
+
                 showEmptyView();
                 break;
             case UNDEFINE:
                 hideLoading();
+                hideLoadingBottom();
                 hideEmptyView();
                 hideRecyclerView();
                 hideSwipe();
+                hideError();
+
+                invalidate(); // for redraw
+
                 showError();
                 break;
+
+            case LOADING_BOTTOM:
+                hideLoading();
+                hideLoadingBottom();
+                hideEmptyView();
+                // hideRecyclerView();
+                hideSwipe();
+                hideError();
+
+                invalidate(); // for redraw
+
+                showLoadingBottom();
+                break;
+
             default:
                 hideLoading();
+                hideLoadingBottom();
                 hideEmptyView();
                 hideRecyclerView();
                 hideSwipe();
+                hideError();
+
+                invalidate(); // for redraw
+
                 showError();
                 break;
         }
