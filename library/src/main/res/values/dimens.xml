@@ -1,6 +1,7 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="card_margin">16dp</dimen>
     <dimen name="header_margin">8dp</dimen>
     <dimen name="item_margin">4dp</dimen>
+    <dimen name="button_radius">5dp</dimen>
 </resources>
