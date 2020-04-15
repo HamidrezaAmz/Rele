@@ -24,7 +24,9 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BlankFragment extends Fragment implements MyCustomViewCallBack, MyCustomAdapterCallBack, MyCustomViewScrollCallBack {
+public class BlankFragment
+        extends Fragment
+        implements MyCustomAdapterCallBack, MyCustomViewScrollCallBack, MyCustomViewCallBack {
 
     private int index = 1;
 
@@ -126,4 +128,5 @@ public class BlankFragment extends Fragment implements MyCustomViewCallBack, MyC
     public void onScrollChange(ScrollDirection scrollDirection) {
 
     }
+
 }

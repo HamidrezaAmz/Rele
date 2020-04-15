@@ -22,7 +22,9 @@ import com.vasl.recyclerlibrary.globalObjects.RowModel;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements MyCustomViewCallBack, MyCustomViewScrollCallBack, MyCustomAdapterCallBack {
+public class MainActivity
+        extends AppCompatActivity
+        implements MyCustomViewCallBack, MyCustomViewScrollCallBack, MyCustomAdapterCallBack {
 
     private static final String TAG = "MainActivity";
 

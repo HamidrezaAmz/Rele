@@ -471,17 +471,17 @@ public class MyCustomView
     }
 
     @Override
-    public void onRefresh() {
-        if (myCustomViewCallBack != null) {
-            myCustomViewCallBack.onRefresh(1);
-        }
-    }
-
-    @Override
     public void onClick(View view) {
         if (view.getId() == R.id.button_retry) {
             if (myCustomViewCallBack != null)
                 myCustomViewCallBack.onRetryClicked();
+        }
+    }
+
+    @Override
+    public void onRefresh() {
+        if (myCustomViewCallBack != null) {
+            myCustomViewCallBack.onRefresh(1);
         }
     }
 }
