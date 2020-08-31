@@ -10,67 +10,29 @@ import android.graphics.drawable.ShapeDrawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.tuyenmonkey.mkloader.MKLoader;
-import com.vasl.recyclerlibrary.customViews.CustomSwipeRefreshLayout;
+import com.vasl.recyclerlibrary.databinding.LayoutMyCustomViewBinding;
 import com.vasl.recyclerlibrary.globalEnums.ListStatus;
 import com.vasl.recyclerlibrary.globalEnums.ScrollDirection;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewCallBack;
 import com.vasl.recyclerlibrary.globalInterfaces.MyCustomViewScrollCallBack;
 import com.vasl.recyclerlibrary.utils.PublicFunction;
 
-public class MyCustomView
-        extends RelativeLayout
-        implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class MyCustomView extends RelativeLayout implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private Context context;
-
-    int titleColor;
-    int subtitleColor;
-    int retryButtonColor;
-    int retryButtonTextColor;
-    int iconTintColor;
-
-    // layout_loading
-    private LinearLayout loadingHolder;
-    private AppCompatTextView loadingTextViewTitle;
-    private AppCompatTextView loadingTextViewSubTitle;
-    private MKLoader mkLoader;
-
-    // layout_loading_bottom
-    private LinearLayout loadingBottomHolder;
-    private AppCompatTextView loadingBottomTextViewTitle;
-
-    // recycler view
-    private RecyclerView recyclerView;
-
-    // empty view
-    private LinearLayout emptyHolder;
-    private AppCompatTextView emptyTextViewTitle, emptyTextViewSubTitle;
-    private AppCompatImageView emptyImageView;
-
-    // error view
-    private LinearLayout errorHolder;
-    private AppCompatTextView errorTextViewTitle, errorTextViewSubTitle;
-    private Button buttonRetry;
-    private AppCompatImageView errorImageView;
-
-    // swipe
-    private CustomSwipeRefreshLayout swipeRefreshLayout;
-
-    // interface
+    private LayoutMyCustomViewBinding myCustomViewBinding;
     private MyCustomViewCallBack myCustomViewCallBack;
     private MyCustomViewScrollCallBack myCustomViewScrollCallBack;
+
+    int titleColor, subtitleColor, retryButtonColor, retryButtonTextColor, iconTintColor;
 
     public void setMyCustomViewCallBack(MyCustomViewCallBack myCustomViewCallBack) {
         this.myCustomViewCallBack = myCustomViewCallBack;
@@ -99,28 +61,16 @@ public class MyCustomView
     }
 
     private void init(AttributeSet attrs) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        myCustomViewBinding = DataBindingUtil.inflate(inflater, R.layout.layout_my_custom_view, this, true);
+        setColor(attrs);
 
-        View view = LayoutInflater.from(context).inflate(R.layout.layout_my_custom_view, this, false);
+        myCustomViewBinding.layoutError.buttonRetry.setOnClickListener(this);
+        myCustomViewBinding.swipeHolder.setOnRefreshListener(this);
 
-        // retry-view
-        buttonRetry = view.findViewById(R.id.button_retry);
-        buttonRetry.setOnClickListener(this);
-
-        // loadingHolder-view
-        loadingHolder = view.findViewById(R.id.loadingHolder);
-        loadingTextViewTitle = view.findViewById(R.id.loadingTextViewTitle);
-        loadingTextViewSubTitle = view.findViewById(R.id.loadingTextViewSubTitle);
-        mkLoader = view.findViewById(R.id.mkLoader);
-
-        // loadingBottomHolder-view
-        loadingBottomHolder = view.findViewById(R.id.loadingBottomHolder);
-
-        // recycler-view
-        recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        myCustomViewBinding.layoutRecyclerView.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-
             }
 
             @Override
@@ -135,35 +85,14 @@ public class MyCustomView
                 }
             }
         });
-
-        //  swipe-view
-        swipeRefreshLayout = view.findViewById(R.id.swipeHolder);
-        swipeRefreshLayout.setOnRefreshListener(this);
-
-        // empty-view
-        emptyHolder = view.findViewById(R.id.emptyHolder);
-        emptyTextViewTitle = view.findViewById(R.id.emptyTextViewTitle);
-        emptyTextViewSubTitle = view.findViewById(R.id.emptyTextViewSubTitle);
-        emptyImageView = view.findViewById(R.id.emptyImageView);
-
-        //error-view
-        errorHolder = view.findViewById(R.id.errorHolder);
-        errorTextViewTitle = view.findViewById(R.id.errorTextViewTitle);
-        errorTextViewSubTitle = view.findViewById(R.id.errorTextViewSubTitle);
-        errorImageView = view.findViewById(R.id.errorImageView);
-
-        //color attr set
-        setColor(attrs);
-
-        addView(view);
     }
 
     private void setColor(AttributeSet attrs) {
         if (attrs == null) {
             return;
         }
-        TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.MyCustomView);
 
+        TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.MyCustomView);
         titleColor = ta.getColor(R.styleable.MyCustomView_titleColor, Color.WHITE);
         subtitleColor = ta.getColor(R.styleable.MyCustomView_subtitleColor, Color.GRAY);
         retryButtonColor = ta.getColor(R.styleable.MyCustomView_retryButtonColor, Color.GRAY);
@@ -174,21 +103,19 @@ public class MyCustomView
         if (title != null)
             setEmptyTitle(title.toString());
 
-        emptyTextViewTitle.setTextColor(titleColor);
-        errorTextViewTitle.setTextColor(titleColor);
-        loadingTextViewTitle.setTextColor(titleColor);
-        emptyTextViewSubTitle.setTextColor(subtitleColor);
-        errorTextViewSubTitle.setTextColor(subtitleColor);
-        loadingTextViewSubTitle.setTextColor(subtitleColor);
+        myCustomViewBinding.layoutEmpty.emptyTextViewTitle.setTextColor(titleColor);
+        myCustomViewBinding.layoutError.errorTextViewTitle.setTextColor(titleColor);
+        myCustomViewBinding.layoutLoading.loadingTextViewTitle.setTextColor(titleColor);
+        myCustomViewBinding.layoutEmpty.emptyTextViewTitle.setTextColor(subtitleColor);
+        myCustomViewBinding.layoutError.errorTextViewSubTitle.setTextColor(subtitleColor);
+        myCustomViewBinding.layoutLoading.loadingTextViewSubTitle.setTextColor(subtitleColor);
+        myCustomViewBinding.layoutError.buttonRetry.setTextColor(retryButtonTextColor);
 
-        //set tint color on icon
-        emptyImageView.setColorFilter(iconTintColor, android.graphics.PorterDuff.Mode.MULTIPLY);
-        errorImageView.setColorFilter(iconTintColor, android.graphics.PorterDuff.Mode.MULTIPLY);
+        myCustomViewBinding.layoutEmpty.emptyImageView.setColorFilter(iconTintColor, android.graphics.PorterDuff.Mode.MULTIPLY);
+        myCustomViewBinding.layoutError.errorImageView.setColorFilter(iconTintColor, android.graphics.PorterDuff.Mode.MULTIPLY);
 
 
-        buttonRetry.setTextColor(retryButtonTextColor);
-
-        Drawable background = buttonRetry.getBackground();
+        Drawable background = myCustomViewBinding.layoutError.buttonRetry.getBackground();
         if (background instanceof ShapeDrawable) {
             ((ShapeDrawable) background).getPaint().setColor(retryButtonColor);
         } else if (background instanceof GradientDrawable) {
@@ -199,91 +126,91 @@ public class MyCustomView
     }
 
     public RecyclerView getRecyclerView() {
-        return recyclerView;
+        return myCustomViewBinding.layoutRecyclerView.recyclerView;
     }
 
     public void setSwipeRefreshStatus(boolean enable) {
-        swipeRefreshLayout.setEnabled(enable);
+        myCustomViewBinding.swipeHolder.setEnabled(enable);
     }
 
     private void setErrorTitle(@Nullable String title) {
         if (!PublicFunction.StringIsEmptyOrNull(title)) {
-            errorTextViewTitle.setText(title);
+            myCustomViewBinding.layoutError.errorTextViewTitle.setText(title);
         }
     }
 
     private void setErrorSubTitle(@Nullable String subTitle) {
         if (!PublicFunction.StringIsEmptyOrNull(subTitle)) {
-            errorTextViewSubTitle.setText(subTitle);
+            myCustomViewBinding.layoutError.errorTextViewSubTitle.setText(subTitle);
         }
     }
 
     private void setEmptyTitle(@Nullable String title) {
         if (!PublicFunction.StringIsEmptyOrNull(title)) {
-            emptyTextViewTitle.setText(title);
+            myCustomViewBinding.layoutEmpty.emptyTextViewTitle.setText(title);
         }
     }
 
     private void setEmptySubTitle(@Nullable String subtitle) {
         if (!PublicFunction.StringIsEmptyOrNull(subtitle)) {
-            emptyTextViewSubTitle.setText(subtitle);
+            myCustomViewBinding.layoutEmpty.emptyTextViewTitle.setText(subtitle);
         }
     }
 
     private void showLoading() {
-        loadingHolder.setVisibility(VISIBLE);
+        myCustomViewBinding.layoutLoading.loadingHolder.setVisibility(VISIBLE);
     }
 
     private void hideLoading() {
-        loadingHolder.setVisibility(INVISIBLE);
+        myCustomViewBinding.layoutLoading.loadingHolder.setVisibility(INVISIBLE);
     }
 
     private void showLoadingBottom() {
-        loadingBottomHolder.setVisibility(VISIBLE);
+        myCustomViewBinding.layoutLoadingBottom.loadingBottomHolder.setVisibility(VISIBLE);
     }
 
     private void hideLoadingBottom() {
-        loadingBottomHolder.setVisibility(INVISIBLE);
+        myCustomViewBinding.layoutLoadingBottom.loadingBottomHolder.setVisibility(INVISIBLE);
     }
 
     private void showEmptyView() {
-        emptyHolder.setVisibility(VISIBLE);
+        myCustomViewBinding.layoutEmpty.emptyHolder.setVisibility(VISIBLE);
     }
 
     private void hideEmptyView() {
-        emptyHolder.setVisibility(INVISIBLE);
+        myCustomViewBinding.layoutEmpty.emptyHolder.setVisibility(INVISIBLE);
     }
 
     private void showRecyclerView() {
-        recyclerView.setVisibility(VISIBLE);
+        myCustomViewBinding.layoutRecyclerView.recyclerView.setVisibility(VISIBLE);
     }
 
     private void hideRecyclerView() {
-        recyclerView.setVisibility(INVISIBLE);
+        myCustomViewBinding.layoutRecyclerView.recyclerView.setVisibility(INVISIBLE);
     }
 
     private void showSwipe() {
-        swipeRefreshLayout.setRefreshing(true);
+        myCustomViewBinding.swipeHolder.setRefreshing(true);
     }
 
     private void hideSwipe() {
-        swipeRefreshLayout.setRefreshing(false);
+        myCustomViewBinding.swipeHolder.setRefreshing(false);
     }
 
     private void showError() {
-        errorHolder.setVisibility(VISIBLE);
+        myCustomViewBinding.layoutError.errorHolder.setVisibility(VISIBLE);
     }
 
     private void hideError() {
-        errorHolder.setVisibility(INVISIBLE);
+        myCustomViewBinding.layoutError.errorHolder.setVisibility(INVISIBLE);
     }
 
     public void hideErrorImageView() {
-        errorImageView.setVisibility(GONE);
+        myCustomViewBinding.layoutError.errorImageView.setVisibility(GONE);
     }
 
     public void hideEmptyImageView() {
-        emptyImageView.setVisibility(GONE);
+        myCustomViewBinding.layoutError.errorImageView.setVisibility(GONE);
     }
 
     public void setStatus(ListStatus status) {
@@ -295,11 +222,10 @@ public class MyCustomView
                 hideRecyclerView();
                 hideSwipe();
                 hideError();
-
                 invalidate(); // for redraw
-
                 showLoading();
                 break;
+
             case SUCCESS:
                 hideLoading();
                 hideLoadingBottom();
@@ -307,11 +233,10 @@ public class MyCustomView
                 hideRecyclerView();
                 hideSwipe();
                 hideError();
-
                 invalidate(); // for redraw
-
                 showRecyclerView();
                 break;
+
             case FAILURE:
                 hideLoading();
                 hideLoadingBottom();
@@ -319,11 +244,10 @@ public class MyCustomView
                 hideRecyclerView();
                 hideSwipe();
                 hideError();
-
                 invalidate(); // for redraw
-
                 showError();
                 break;
+
             case EMPTY:
                 hideLoading();
                 hideLoadingBottom();
@@ -331,11 +255,10 @@ public class MyCustomView
                 hideRecyclerView();
                 hideSwipe();
                 hideError();
-
                 invalidate(); // for redraw
-
                 showEmptyView();
                 break;
+
             case UNDEFINE:
                 hideLoading();
                 hideLoadingBottom();
@@ -343,9 +266,7 @@ public class MyCustomView
                 hideRecyclerView();
                 hideSwipe();
                 hideError();
-
                 invalidate(); // for redraw
-
                 showError();
                 break;
 
@@ -356,9 +277,7 @@ public class MyCustomView
                 // hideRecyclerView();
                 hideSwipe();
                 hideError();
-
                 invalidate(); // for redraw
-
                 showLoadingBottom();
                 break;
 
@@ -369,9 +288,7 @@ public class MyCustomView
                 hideRecyclerView();
                 hideSwipe();
                 hideError();
-
                 invalidate(); // for redraw
-
                 showError();
                 break;
         }
@@ -386,11 +303,10 @@ public class MyCustomView
                 hideRecyclerView();
                 hideSwipe();
                 hideError();
-
                 invalidate(); // for redraw
-
                 showLoading();
                 break;
+
             case SUCCESS:
                 hideLoading();
                 hideLoadingBottom();
@@ -398,11 +314,10 @@ public class MyCustomView
                 hideRecyclerView();
                 hideSwipe();
                 hideError();
-
                 invalidate(); // for redraw
-
                 showRecyclerView();
                 break;
+
             case FAILURE:
                 hideLoading();
                 hideLoadingBottom();
@@ -411,11 +326,10 @@ public class MyCustomView
                 hideSwipe();
                 hideError();
                 setErrorSubTitle(subTitle);
-
                 invalidate(); // for redraw
-
                 showError();
                 break;
+
             case EMPTY:
                 hideLoading();
                 hideLoadingBottom();
@@ -424,11 +338,10 @@ public class MyCustomView
                 hideSwipe();
                 hideError();
                 setEmptySubTitle(subTitle);
-
                 invalidate(); // for redraw
-
                 showEmptyView();
                 break;
+
             case UNDEFINE:
                 hideLoading();
                 hideLoadingBottom();
@@ -436,9 +349,7 @@ public class MyCustomView
                 hideRecyclerView();
                 hideSwipe();
                 hideError();
-
                 invalidate(); // for redraw
-
                 showError();
                 break;
 
@@ -449,9 +360,7 @@ public class MyCustomView
                 // hideRecyclerView();
                 hideSwipe();
                 hideError();
-
                 invalidate(); // for redraw
-
                 showLoadingBottom();
                 break;
 
@@ -462,9 +371,7 @@ public class MyCustomView
                 hideRecyclerView();
                 hideSwipe();
                 hideError();
-
                 invalidate(); // for redraw
-
                 showError();
                 break;
         }

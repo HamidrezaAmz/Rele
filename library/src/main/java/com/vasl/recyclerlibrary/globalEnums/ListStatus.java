@@ -31,6 +31,4 @@ public enum ListStatus {
         }
         return UNDEFINE;
     }
-
-
 }

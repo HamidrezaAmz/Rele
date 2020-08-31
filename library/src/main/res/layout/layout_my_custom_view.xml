@@ -1,38 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.vasl.recyclerlibrary.customViews.CustomSwipeRefreshLayout
-        android:id="@+id/swipeHolder"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <!--recycler-view-->
-        <include layout="@layout/layout_recycler_view" />
-
-    </com.vasl.recyclerlibrary.customViews.CustomSwipeRefreshLayout>
+    <data />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--layout_loading-->
-        <include layout="@layout/layout_loading" />
-
-        <!--layout_loading_bottom-->
-        <include
-            layout="@layout/layout_loading_bottom"
+        <com.vasl.recyclerlibrary.customViews.CustomSwipeRefreshLayout
+            android:id="@+id/swipeHolder"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true" />
+            android:layout_height="match_parent">
 
-        <!--empty view-->
-        <include layout="@layout/layout_empty" />
+            <include layout="@layout/layout_recycler_view"
+                android:id="@+id/layout_recycler_view"/>
 
-        <!--error view-->
-        <include layout="@layout/layout_error" />
+        </com.vasl.recyclerlibrary.customViews.CustomSwipeRefreshLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include layout="@layout/layout_loading"
+                android:id="@+id/layout_loading"/>
+            <include
+                android:id="@+id/layout_loading_bottom"
+                layout="@layout/layout_loading_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true" />
+            <include layout="@layout/layout_empty"
+                android:id="@+id/layout_empty"/>
+            <include layout="@layout/layout_error"
+                android:id="@+id/layout_error"/>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
-</RelativeLayout>
+</layout>

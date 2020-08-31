@@ -1,45 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/errorHolder"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:visibility="visible">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data />
 
     <LinearLayout
+        android:id="@+id/errorHolder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="visible">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/errorImageView"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/no_wifi_256" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/errorTextViewTitle"
-            style="@style/TextViewTitleStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/error_title" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/errorImageView"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/no_wifi_256" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/errorTextViewSubTitle"
-            style="@style/TextViewSubTitleStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/error_sub_title" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/errorTextViewTitle"
+                style="@style/TextViewTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/error_title" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_retry"
-            style="@style/GlobalButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/retry" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/errorTextViewSubTitle"
+                style="@style/TextViewSubTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/error_sub_title" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_retry"
+                style="@style/GlobalButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/retry" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</layout>

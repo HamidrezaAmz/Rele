@@ -32,8 +32,7 @@ public class CustomEditText extends AppCompatEditText {
     }
 
     public void init() {
-        this.setText("hello negar");
+        this.setText("hello");
         this.setTextSize(24);
     }
-
 }

@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/loadingBottomHolder"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:background="@color/transparentLoading"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:padding="5dp"
-    android:visibility="gone">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.tuyenmonkey.mkloader.MKLoader
-        android:id="@+id/mkLoader"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:mk_color="@color/gray"
-        app:mk_type="Whirlpool" />
+    <data />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/loadingTextViewTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/app_font"
-        android:paddingStart="5dp"
-        android:paddingEnd="5dp"
-        android:text="@string/please_wait"
-        android:textColor="@color/white"
-        android:textSize="14sp" />
+    <LinearLayout
+        android:id="@+id/loadingBottomHolder"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/transparentLoading"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:visibility="gone">
 
-</LinearLayout>
+        <com.tuyenmonkey.mkloader.MKLoader
+            android:id="@+id/mkLoader"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:mk_color="@color/gray"
+            app:mk_type="Whirlpool" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/loadingTextViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/app_font"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:text="@string/please_wait"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</layout>
